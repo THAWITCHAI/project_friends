@@ -26,9 +26,9 @@ export default function Home({}: Props) {
   }
   if (status == "loading") {
     return (
-      <div className="text-8xl flex justify-center items-center w-full h-full">
-        Loading...
-      </div>
+      <>
+        <Login />
+      </>
     );
   }
 }

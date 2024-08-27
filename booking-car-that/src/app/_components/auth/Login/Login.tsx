@@ -32,8 +32,8 @@ export default function Login() {
               <div className="w-full h-1/3 flex justify-center items-center">
                 <Image
                   src={"/people.png"}
-                  width={128}
-                  height={128}
+                  width={100}
+                  height={100}
                   alt=""
                   className="image-login"
                 />
@@ -41,11 +41,11 @@ export default function Login() {
               <div className=" h-1/4 w-full box-input p-5">
                 <div className="input flex justify-center items-center overflow-hidden">
                   <div className="w-1/6 h-full flex justify-center items-center">
-                    <Image src={"/user.png"} width={30} height={30} alt="" />
+                    <Image src={"/user.png"} width={24} height={24} alt="" />
                   </div>
                   <input
                     type="text"
-                    className="h-full w-5/6 pl-3 text-lg"
+                    className="h-full w-full pl-3 text-x"
                     placeholder="อีเมล"
                     name="uemail"
                     onChange={(e) => {
@@ -55,11 +55,11 @@ export default function Login() {
                 </div>
                 <div className="input flex justify-center items-center overflow-hidden">
                   <div className="w-1/6 h-full flex justify-center items-center">
-                    <Image src={"/padlock.png"} width={30} height={30} alt="" />
+                    <Image src={"/padlock.png"} width={24} height={24} alt="" />
                   </div>
                   <input
                     type="password"
-                    className="h-full w-5/6 pl-3 text-lg"
+                    className="h-full w-full pl-3 text-x"
                     placeholder="รหัสผ่าน"
                     name="upwd"
                     onChange={(e) => {
