@@ -41,7 +41,7 @@ export default function Login() {
               <div className=" h-1/4 w-full box-input p-5">
                 <div className="input flex justify-center items-center overflow-hidden">
                   <div className="w-1/6 h-full flex justify-center items-center">
-                    <Image src={"/user.png"} width={24} height={24} alt="" />
+                    <Image src={"/user.png"} width={18} height={18} alt="" />
                   </div>
                   <input
                     type="text"
@@ -55,7 +55,7 @@ export default function Login() {
                 </div>
                 <div className="input flex justify-center items-center overflow-hidden">
                   <div className="w-1/6 h-full flex justify-center items-center">
-                    <Image src={"/padlock.png"} width={24} height={24} alt="" />
+                    <Image src={"/padlock.png"} width={18} height={18} alt="" />
                   </div>
                   <input
                     type="password"

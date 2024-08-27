@@ -9,6 +9,7 @@ declare module "next-auth" {
   interface Session {
     user: {
       uname?: string;
+      unick_name?: string;
       uemail?: string;
       rname?: string;
       // เพิ่มคุณสมบัติอื่น ๆ ที่ต้องการใน user object
@@ -21,6 +22,7 @@ declare module "next-auth/jwt" {
   interface JWT {
     uname?: string;
     uemail?: string;
+    unick_name?: string;
     rname?: string;
     // เพิ่มคุณสมบัติอื่น ๆ ที่ต้องการใน JWT object
   }
@@ -73,6 +75,7 @@ const handler = NextAuth({
           uname: token.uname,
           uemail: token.uemail,
           rname: token.rname,
+          unick_name:token.unick_name
         };
       }
       return session;
@@ -82,6 +85,7 @@ const handler = NextAuth({
         token.uname = user.uname;
         token.uemail = user.uemail;
         token.rname = user.rname;
+        token.unick_name = user.unick_name
       }
       return token;
     },
