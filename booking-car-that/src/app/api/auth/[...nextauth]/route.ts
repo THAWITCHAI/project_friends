@@ -2,15 +2,19 @@ import NextAuth, { DefaultSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { JWT } from "next-auth/jwt";
 import { Session } from "next-auth";
-import { getSession } from "next-auth/react";
 
 // ขยายประเภท Session
 declare module "next-auth" {
   interface Session {
     user: {
+      uid?: string;
       uname?: string;
       unick_name?: string;
       uemail?: string;
+      upwd?: string;
+      uphone?: string;
+      udive?: string;
+      uprofile?: string;
       rname?: string;
       // เพิ่มคุณสมบัติอื่น ๆ ที่ต้องการใน user object
     } & DefaultSession["user"];
@@ -20,9 +24,14 @@ declare module "next-auth" {
 // ขยายประเภท JWT
 declare module "next-auth/jwt" {
   interface JWT {
+    uid?: string;
     uname?: string;
-    uemail?: string;
     unick_name?: string;
+    uemail?: string;
+    upwd?: string;
+    uphone?: string;
+    udive?: string;
+    uprofile?: string;
     rname?: string;
     // เพิ่มคุณสมบัติอื่น ๆ ที่ต้องการใน JWT object
   }
@@ -45,7 +54,7 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials, req) {
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/login_user`, {
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
           method: "POST",
           body: JSON.stringify({
             uemail: credentials?.username,
@@ -72,20 +81,30 @@ const handler = NextAuth({
       if (token) {
         session.user = {
           ...session.user,
+          uid: token.uid,
           uname: token.uname,
+          unick_name: token.unick_name,
           uemail: token.uemail,
+          upwd: token.upwd,
+          uphone: token.uphone,
+          udive: token.udive,
+          uprofile: token.uprofile,
           rname: token.rname,
-          unick_name:token.unick_name
         };
       }
       return session;
     },
     async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
+        token.uid = user.uid;
         token.uname = user.uname;
+        token.unick_name = user.unick_name;
         token.uemail = user.uemail;
+        token.upwd = user.upwd;
+        token.uphone = user.uphone;
+        token.udive = user.udive;
+        token.uprofile = user.uprofile;
         token.rname = user.rname;
-        token.unick_name = user.unick_name
       }
       return token;
     },

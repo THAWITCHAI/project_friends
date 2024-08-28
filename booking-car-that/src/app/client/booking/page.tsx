@@ -1,28 +1,13 @@
-'use client'
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import React from "react";
+import React from 'react'
+import Sidebar from '@/app/_components/Client/Sidebar/Sidebar'
+import Booking from '@/app/_components/Client/Booking/Booking'
+type Props = {}
 
-type Props = {};
-
-export default function Booking({}: Props) {
-  const {data:session,status}= useSession()
-  const router = useRouter()
-if(session){
+export default function BookingPage({}: Props) {
   return (
-    <div className="text-8xl flex justify-center items-center h-full w-full">
-      <h1
-        className="text-blue-500 cursor-pointer"
-        onClick={() => {
-          signOut();
-        }}
-      >
-        Welcome
-      </h1>
+    <div className='main'>
+        <Sidebar/>
+        <Booking/>
     </div>
-  );
-}
-if(!session){
-  return router.replace('/')
-}
+  )
 }
