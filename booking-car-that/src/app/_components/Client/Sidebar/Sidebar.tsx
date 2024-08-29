@@ -4,11 +4,13 @@ import "./reponsive.css";
 import "./sidebar.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 type Props = {};
 
 export default function Sidebar({}: Props) {
   const [time, setTime] = useState<Date | null>(null);
   const router = useRouter();
+  const { data: session } = useSession();
 
   useEffect(() => {
     // Set the initial time once the component has mounted (client-side)
@@ -38,13 +40,13 @@ export default function Sidebar({}: Props) {
           height={24}
           alt="setting"
           className="Image"
-          onClick={()=>router.push('/client/setting')}
+          onClick={() => router.push("/client/setting")}
         />
       </div>
       <div className="profile">
         <div className="image-profile">
           <Image
-            src={"/profile.jpg"}
+            src={String(session?.user.uprofile || "/profile.jpg")}
             alt="profile"
             width={130}
             height={130}
@@ -52,12 +54,15 @@ export default function Sidebar({}: Props) {
           />
         </div>
         <div className="contact-profile">
-          <h1 className="status">Tat Sutummawong</h1>
-          <p>User</p>
+          <h1 className="status">{session?.user.unick_name}</h1>
+          <p>{session?.user.rname}</p>
         </div>
       </div>
       <div className="side-menu">
-        <button className="item menu-1" onClick={()=>router.push('/client/booking')}>
+        <button
+          className="item menu-1"
+          onClick={() => router.push("/client/booking")}
+        >
           <Image
             src={"/appointment.png"}
             width={24}
@@ -69,7 +74,10 @@ export default function Sidebar({}: Props) {
             จองรถ
           </div>
         </button>
-        <button className="item menu-2" onClick={()=>router.push('/client/list')}>
+        <button
+          className="item menu-2"
+          onClick={() => router.push("/client/list")}
+        >
           <Image
             src={"/to-do-list.png"}
             width={24}
@@ -81,7 +89,10 @@ export default function Sidebar({}: Props) {
             ประวัติการจอง
           </div>
         </button>
-        <button className="item menu-3" onClick={()=>router.push('/client/all-car')}>
+        <button
+          className="item menu-3"
+          onClick={() => router.push("/client/all-car")}
+        >
           <Image
             src={"/pickup-car.png"}
             width={24}
@@ -93,7 +104,10 @@ export default function Sidebar({}: Props) {
             รถทั้งหมด
           </div>
         </button>
-        <button className="item menu-4" onClick={() => router.replace("/api/auth/signout")}>
+        <button
+          className="item menu-4"
+          onClick={() => router.replace("/api/auth/signout")}
+        >
           <Image
             src={"/logout.png"}
             width={24}

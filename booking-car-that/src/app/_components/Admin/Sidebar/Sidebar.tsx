@@ -4,10 +4,12 @@ import "./style.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 type Props = {};
 
 export default function Sidebar({}: Props) {
   const [time, setTime] = useState<Date | null>(null);
+  const { data: session } = useSession();
 
   useEffect(() => {
     // Set the initial time once the component has mounted (client-side)
@@ -44,7 +46,7 @@ export default function Sidebar({}: Props) {
       <div className="profile">
         <div className="box-Image">
           <Image
-            src={"/profile.jpg"}
+            src={String(session?.user.uprofile||'/profile.jpg')}
             width={90}
             height={90}
             className="image"
@@ -52,8 +54,8 @@ export default function Sidebar({}: Props) {
           />
         </div>
         <div className="box-contact">
-          <h1 className="name">That</h1>
-          <h1 className="status">Admin</h1>
+          <h1 className="name">{session?.user.unick_name}</h1>
+          <h1 className="status">{session?.user.rname}</h1>
         </div>
       </div>
       <div className="tag-bar">แสดงข้อมูล</div>

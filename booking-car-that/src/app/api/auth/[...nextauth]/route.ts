@@ -63,8 +63,8 @@ const handler = NextAuth({
           headers: { "Content-Type": "application/json" },
         });
         const response = await res.json();
-        console.log(response);
-        if (response) {
+        if (res.ok) {
+          console.log(response);
           return response;
         }
 
