@@ -1,3 +1,4 @@
+'use client'
 import Sidebar from "@/app/_components/Admin/Sidebar/Sidebar";
 import Image from "next/image";
 import React from "react";
@@ -134,7 +135,12 @@ export default function List_id({
         </div>
         <div className="h-[10rem] w-full mt-10 flex justify-center items-center">
           <div className="w-1/2 h-1/2 p-4 flex justify-around items-center">
-            <button className="w-1/4 h-[2rem] text-white bg-green-500 rounded-lg active:scale-90 transition-all ease-in-out" onClick={his}>
+            <button
+              className="w-1/4 h-[2rem] text-white bg-green-500 rounded-lg active:scale-90 transition-all ease-in-out"
+              onClick={() => {
+                return history.back();
+              }}
+            >
               กลับ
             </button>
             <button className="w-1/4 h-[2rem] text-white bg-red-500 rounded-lg active:scale-90 transition-all ease-in-out">
