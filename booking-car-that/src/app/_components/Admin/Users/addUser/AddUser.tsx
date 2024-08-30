@@ -44,14 +44,27 @@ export default function AddUser({}: Props) {
   }, []);
 
   const handleSubmit = async () => {
-    await fetch("/api/user", {
-      method: "POST",
-      body: JSON.stringify(
-        Object.assign({}, form, { uprofile: base64_profile }, { udive: base64 })
-      ),
-    })
-      .then((res) => res.json())
-      .then((res) => alert(res["massage"]));
+    if (
+      Object.keys(form).length <= 7 &&
+      base64 == null &&
+      base64_profile == null
+    ) {
+      return alert("กรุณากรอกให้ครับ!!");
+    } else {
+      await fetch("/api/user", {
+        method: "POST",
+        body: JSON.stringify(
+          Object.assign(
+            {},
+            form,
+            { uprofile: base64_profile },
+            { udive: base64 }
+          )
+        ),
+      })
+        .then((res) => res.json())
+        .then((res) => alert(res["massage"]));
+    }
   };
   return (
     <div className="main-add-user">

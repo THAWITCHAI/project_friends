@@ -7,15 +7,15 @@ export async function POST(req: Request) {
     // รับข้อมูล JSON จากคำขอ
     const { uemail, upwd } = await req.json();
 
-    console.log('Email =>', uemail);
-    console.log('Password =>', upwd);
+    console.log("Email =>", uemail);
+    console.log("Password =>", upwd);
 
     const promisePool = mysqlPool.promise();
 
     // ค้นหาผู้ใช้ในฐานข้อมูล
-    const [rows]:any = await promisePool.query(
-      "SELECT * FROM users U JOIN roles R ON R.rid = U.rid WHERE uemail = ?",
-      [uemail]
+    const [rows]: any = await promisePool.query(
+      "SELECT U.uid,U.uname,U.unick_name,U.uemail,U.upwd,U.uphone,R.rid,R.rname  FROM users U JOIN roles R ON R.rid = U.rid WHERE uemail = ? AND upwd = ?",
+      [uemail,upwd]
     );
 
     // ตรวจสอบว่าพบผู้ใช้หรือไม่
@@ -34,12 +34,14 @@ export async function POST(req: Request) {
 
     // ถ้าไม่ได้ใช้ bcrypt ให้ใช้การเปรียบเทียบตรงๆ
     if (user.upwd !== upwd) {
-      return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
+      return NextResponse.json(
+        { message: "Invalid credentials" },
+        { status: 401 }
+      );
     }
 
     // ส่งคืนข้อมูลผู้ใช้
     return NextResponse.json(user, { status: 200 });
-
   } catch (error) {
     console.error("Database query failed:", error);
     return NextResponse.json(

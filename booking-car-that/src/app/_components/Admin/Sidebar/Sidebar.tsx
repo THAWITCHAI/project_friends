@@ -10,6 +10,12 @@ type Props = {};
 export default function Sidebar({}: Props) {
   const [time, setTime] = useState<Date | null>(null);
   const { data: session } = useSession();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("/api/user")
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  }, []);
 
   useEffect(() => {
     // Set the initial time once the component has mounted (client-side)
@@ -44,14 +50,21 @@ export default function Sidebar({}: Props) {
         </Link>
       </div>
       <div className="profile">
-        <div className="box-Image">
-          <Image
-            src={String(session?.user.uprofile||'/profile.jpg')}
-            width={90}
-            height={90}
-            className="image"
-            alt="loading"
-          />
+        <div className="box-Image  overflow-hidden rounded-full">
+          {data.map((item, index) => {
+            if (String(session?.user.uid) === String(item["uid"])) {
+              return (
+                <Image
+                  key={index}
+                  src={String(item['uprofile'] || "/profile.png")}
+                  width={110}
+                  height={100}
+                  className="image overflow-hidden"
+                  alt="loading"
+                />
+              );
+            }
+          })}
         </div>
         <div className="box-contact">
           <h1 className="name">{session?.user.unick_name}</h1>

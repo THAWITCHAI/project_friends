@@ -35,7 +35,7 @@
   border-bottom: 1px solid #ffffff52;
 }
 .sidebar .profile .box-Image {
-  width: 40%;
+  width: 30%;
   height: 70%;
   display: flex;
   justify-content: center;
@@ -47,6 +47,7 @@
 .sidebar .profile .box-contact {
   width: 60%;
   height: 70%;
+  padding-left: 5%;
 }
 .sidebar .profile .box-contact .name {
   width: 100%;
