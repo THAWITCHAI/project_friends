@@ -9,6 +9,7 @@ type Props = {};
 
 export default function Booking({}: Props) {
   const [cars, setCars] = useState([]);
+  const [car_check, seCar_check] = useState({});
   useEffect(() => {
     getDatacar();
   }, []);
@@ -22,7 +23,7 @@ export default function Booking({}: Props) {
   return (
     <div className="booking">
       {cars.map((item, index) => {
-        if(item['sid']=='1'){
+        if (item["sid"] == "1") {
           return (
             <div key={index} className="card">
               <div className="card-image overflow-hidden">
@@ -42,7 +43,9 @@ export default function Booking({}: Props) {
               <div className="card-btn">
                 <button
                   className="btn btn-1"
-                  onClick={() => router.push("/client/detail-car/" + item["cid"])}
+                  onClick={() =>
+                    router.push("/client/detail-car/" + item["cid"])
+                  }
                 >
                   <Link href={"/client/detail-car/" + item["cid"]}>
                     รายละเอียด
@@ -54,7 +57,9 @@ export default function Booking({}: Props) {
                     router.push("/client/confirm-booking/" + item["cid"])
                   }
                 >
-                  <Link href={"/client/confirm-booking/" + item["cid"]}>จอง</Link>
+                  <Link href={"/client/confirm-booking/" + item["cid"]}>
+                    จอง
+                  </Link>
                 </button>
               </div>
             </div>

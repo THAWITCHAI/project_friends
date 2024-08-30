@@ -4,14 +4,19 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 type Props = any;
 
 export default function Confirm_Booking({ params }: Props) {
   const { id } = params;
   // สถานที่จะไป ถนน ซอย แขวง/ตำบล อำเภอ จังหวัด รหัสไปรษณีย์
+  const { data: session } = useSession();
   const [dataCar, setDataCar] = useState([]);
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    uid: session?.user.uid,
+    cid: Number(id[0]),
+  });
   const router = useRouter();
 
   const handleChang = (e: any) => {
@@ -21,11 +26,17 @@ export default function Confirm_Booking({ params }: Props) {
     });
   };
 
-  const handleSubmit = () => {
-    const cid = id[0];
-    const data = Object.assign({}, form, { uid: 1, cid: cid });
-    console.log(data);
-    return router.replace("/client/list");
+  const handleSubmit = async () => {
+    const res = await fetch(`/api/booking`, {
+      method: "POST",
+      body: JSON.stringify(form),
+    });
+
+    if(res.ok){
+      const response = await res.json()
+      alert(response['massage'])
+      return router.replace('/client/booking')
+    }
   };
 
   useEffect(() => {
@@ -48,7 +59,7 @@ export default function Confirm_Booking({ params }: Props) {
                     className="input"
                     type="text"
                     placeholder="ชื่อสถานที่"
-                    name="location"
+                    name="bnamelocation"
                     onChange={handleChang}
                   />
                 </div>
@@ -58,7 +69,7 @@ export default function Confirm_Booking({ params }: Props) {
                     className="input"
                     type="text"
                     placeholder="ชื่อถนน"
-                    name="road"
+                    name="broad"
                     onChange={handleChang}
                   />
                 </div>
@@ -68,7 +79,7 @@ export default function Confirm_Booking({ params }: Props) {
                     className="input"
                     type="text"
                     placeholder="ชื่อซอย"
-                    name="alley"
+                    name="balley"
                     onChange={handleChang}
                   />
                 </div>
@@ -78,7 +89,7 @@ export default function Confirm_Booking({ params }: Props) {
                     className="input"
                     type="text"
                     placeholder="ชื่อแขวง/ตำบล"
-                    name="s_d"
+                    name="bsubdistrict"
                     onChange={handleChang}
                   />
                 </div>
@@ -88,7 +99,7 @@ export default function Confirm_Booking({ params }: Props) {
                     className="input"
                     type="text"
                     placeholder="ชื่ออำเภอ"
-                    name="district"
+                    name="bdistrict"
                     onChange={handleChang}
                   />
                 </div>
@@ -108,7 +119,7 @@ export default function Confirm_Booking({ params }: Props) {
                     className="input"
                     type="text"
                     placeholder="ตัวอย่าง 34220"
-                    name="post_id"
+                    name="bzip_code"
                     onChange={handleChang}
                   />
                 </div>
@@ -117,8 +128,7 @@ export default function Confirm_Booking({ params }: Props) {
                   <input
                     className="input"
                     type="date"
-                    placeholder="ชื่อสถานที่"
-                    name="s_date"
+                    name="bdate_s"
                     onChange={handleChang}
                   />
                 </div>
@@ -128,7 +138,7 @@ export default function Confirm_Booking({ params }: Props) {
                     className="input"
                     type="date"
                     placeholder="ชื่อสถานที่"
-                    name="e_date"
+                    name="bdate_e"
                     onChange={handleChang}
                   />
                 </div>
@@ -136,7 +146,11 @@ export default function Confirm_Booking({ params }: Props) {
                   className="btn bg-green-500  hover:bg-green-600 Link"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleSubmit();
+                    if (Object.keys(form).length < 9) {
+                      alert("กรุณากรอกให้ครบ!!");
+                    } else {
+                      handleSubmit();
+                    }
                   }}
                 >
                   ยืนยันการจอง
