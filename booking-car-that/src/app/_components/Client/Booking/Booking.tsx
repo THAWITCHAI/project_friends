@@ -9,7 +9,6 @@ type Props = {};
 
 export default function Booking({}: Props) {
   const [cars, setCars] = useState([]);
-  const [car_check, seCar_check] = useState({});
   useEffect(() => {
     getDatacar();
   }, []);

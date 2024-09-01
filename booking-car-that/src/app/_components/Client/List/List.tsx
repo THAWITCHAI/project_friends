@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./stlye.css";
 import "./reponsive.css";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 type Props = {};
 
 export default function List({}: Props) {
@@ -11,6 +12,10 @@ export default function List({}: Props) {
   const { data: session } = useSession();
 
   useEffect(() => {
+    getBooking();
+  }, [session]);
+
+  const getBooking = () => {
     fetch("/api/booking")
       .then((res) => res.json())
       .then((res) => {
@@ -20,16 +25,18 @@ export default function List({}: Props) {
         );
         setCount(userBookings.length);
       });
-  }, [session]);
+  };
 
   const reCar = async (data: any) => {
-    const res = await fetch("/api/list", {
-      method: "UPDATE",
+    const res = await fetch("/api/return_car", {
+      method: "POST",
       body: JSON.stringify(data),
     });
+    console.log(await res);
     if (res.ok) {
       const response = await res.json();
-      alert(response['massage'])
+      alert(response["massage"]);
+      getBooking()
     }
   };
 
@@ -127,7 +134,7 @@ export default function List({}: Props) {
                                 const req = prompt("หมายเหตุ");
                                 if (req) {
                                   const return_data = {
-                                    bid: item["sid"],
+                                    bid: item["bid"],
                                     cid: item["cid"],
                                     bnot: req,
                                   };
@@ -139,8 +146,10 @@ export default function List({}: Props) {
                             >
                               คืนรถ
                             </button>
-                            <button className="detail bg-red-500">
-                              รายละเอียด
+                            <button className="detail bg-yellow-500">
+                              <Link href={"/client/list/" + item["bid"]}>
+                                รายละเอียด
+                              </Link>
                             </button>
                           </td>
                         </tr>

@@ -151,9 +151,6 @@ export default function Addcar({}: Props) {
             <option value="2" className="text-red-500">
               ไม่ว่าง
             </option>
-            <option value="3" className="text-yellow-500">
-              กำลังใช้งาน
-            </option>
           </select>
         </div>
         <div className="input-form">

@@ -49,6 +49,9 @@ export default function All_Cars({}: Props) {
               {item["sid"] == "2" && (
                 <button className="btn-2 ">{item["sname"]}</button>
               )}
+              {item["sid"] == "3" && (
+                <button className="btn-2 ">{item["sname"]}</button>
+              )}
             </div>
           </div>
         );
