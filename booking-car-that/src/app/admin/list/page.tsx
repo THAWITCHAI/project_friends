@@ -8,23 +8,38 @@ type Props = {};
 export default function List({}: Props) {
   const [data, setData] = useState([]);
   const [select, setSelect] = useState(1);
-  const [cre,setCre] = useState([])
+  const [cre, setCre] = useState([]);
 
   useEffect(() => {
     getCars();
-    getReaturn_Car()
+    getReaturn_Car();
   }, []);
-  
-  const getReaturn_Car = async()=>{
-    await fetch('/api/return_car')
-    .then((res)=>res.json())
-    .then((res)=>setCre(res))
-  }
+
+  const getReaturn_Car = async () => {
+    await fetch("/api/return_car")
+      .then((res) => res.json())
+      .then((res) => setCre(res));
+  };
 
   const getCars = async () => {
     await fetch("/api/booking")
       .then((res) => res.json())
       .then((res) => setData(res));
+  };
+
+  const deleteCar_resturn = async (bid: any) => {
+    const res = await fetch("/api/booking", {
+      method: "DELETE",
+      body: JSON.stringify(bid),
+    });
+    if (res.ok) {
+      const resp = await res.json();
+      alert(resp["massage"]);
+      getReaturn_Car();
+      getCars();
+      return;
+    }
+    return;
   };
 
   return (
@@ -53,7 +68,8 @@ export default function List({}: Props) {
             </select>
           </div>
           <div className="w-[20%] h-full flex justify-center items-center text-blue-500">
-            จำนวนรายการจอง : {select===1?Object.keys(data).length:Object.keys(cre).length}
+            จำนวนรายการจอง :{" "}
+            {select === 1 ? Object.keys(data).length : Object.keys(cre).length}
           </div>
         </div>
         {select === 1 && (
@@ -121,7 +137,18 @@ export default function List({}: Props) {
                             ดูรายละเอียด
                           </Link>
                         </button>
-                        <button className="text-red-500">ลบ</button>
+                        <button
+                          className="text-red-500"
+                          onClick={() => {
+                            const data = {
+                              bid: item["bid"],
+                              cid: item["cid"],
+                            };
+                            deleteCar_resturn(data);
+                          }}
+                        >
+                          ลบ
+                        </button>
                       </td>
                     </tr>
                   );
@@ -195,7 +222,18 @@ export default function List({}: Props) {
                             ดูรายละเอียด
                           </Link>
                         </button>
-                        <button className="text-red-500">ลบ</button>
+                        <button
+                          className="text-red-500"
+                          onClick={() => {
+                            const data = {
+                              bid: item["bid"],
+                              cid: item["cid"],
+                            };
+                            deleteCar_resturn(data);
+                          }}
+                        >
+                          ลบ
+                        </button>
                       </td>
                     </tr>
                   );

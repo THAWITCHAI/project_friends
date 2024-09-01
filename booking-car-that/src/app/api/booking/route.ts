@@ -24,3 +24,11 @@ export async function GET() {
   );
   return NextResponse.json(row);
 }
+
+export async function DELETE(req: any) {
+  const data = await req.json();
+  const promisePool = mysqlPool.promise();
+  await promisePool.query(`DELETE FROM booking WHERE bid=${data['bid']}`);
+  await promisePool.query(`UPDATE cars set sid=1 WHERE cid = ${data['cid']}`);
+  return NextResponse.json({ massage: "Delete Successfully" }, { status: 200 });
+}

@@ -28,11 +28,13 @@ export default function List_id_Client({ params }: Props) {
             >
               <Sidebar />
               <div className="w-[83%] h-full overflow-y-scroll text-gray-500 p-10">
-                <div className="w-full h-32 text-white text-5xl flex justify-center items-center bg-green-500 rounded-lg">{item['sname']}</div>
-                <div className=" h-[20rem] w-full overflow-hidden flex justify-around items-center">
+                <div className="w-full h-32 text-white text-5xl flex justify-center items-center bg-green-500 rounded-lg">
+                  {item["sname"]}
+                </div>
+                <div className=" h-[20rem] w-full overflow-hidden flex justify-around items-center mt-10">
                   <div className="w-fit h-fit rounded-lg overflow-hidden">
                     <Image
-                      src={String(item['uprofile'])}
+                      src={String(item["uprofile"])}
                       width={300}
                       height={500}
                       alt=""
@@ -76,16 +78,16 @@ export default function List_id_Client({ params }: Props) {
                           <tbody>
                             <tr className="bg-white  dark:bg-gray-800 dark:border-gray-700">
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['uid']}
+                                {item["uid"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                                {item['uname']}
+                                {item["uname"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['uphone']}
+                                {item["uphone"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['rname']}
+                                {item["rname"]}
                               </td>
                             </tr>
                           </tbody>
@@ -100,7 +102,7 @@ export default function List_id_Client({ params }: Props) {
                   </h1>
                   <div className="w-full h-full overflow-hidden flex justify-center items-center">
                     <Image
-                      src={item['udive']}
+                      src={item["udive"]}
                       height={300}
                       width={300}
                       alt=""
@@ -111,7 +113,7 @@ export default function List_id_Client({ params }: Props) {
                 <div className=" h-[20rem] w-full overflow-hidden flex justify-around items-center mt-10 ">
                   <div className="w-fit h-fit rounded-lg overflow-hidden">
                     <Image
-                      src={item['cpath']}
+                      src={item["cpath"]}
                       width={300}
                       height={500}
                       alt=""
@@ -180,34 +182,68 @@ export default function List_id_Client({ params }: Props) {
                           <tbody>
                             <tr className="bg-white  dark:bg-gray-800 dark:border-gray-700">
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['cid']}
+                                {item["cid"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['cbrand']}
+                                {item["cbrand"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['cmodel']}
+                                {item["cmodel"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['ccolor']}
+                                {item["ccolor"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['clicense']}
+                                {item["clicense"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['cseat']}
+                                {item["cseat"]}
                               </td>
                               <td className="px-6 py-4 text-green-500 text-xs">
-                              {item['cprice']}
+                                {item["cprice"]}
                               </td>
                               <td className="px-6 py-4 text-black text-xs">
-                              {item['tname']}
+                                {item["tname"]}
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div className="w-full h-fit flex justify-center items-center mt-10">
+                  <div className="border w-1/2 h-fit">
+                    <p className="w-full h-16 text-2xl text-black flex justify-center items-center">
+                      ข้อมูลสถานที่
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      ชื่อสถานที่ : {item["bnamelocation"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      ถนน : {item["broad"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      ซอย : {item["balley"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      แขวง/ตำบล : {item["bsubdistrict"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      อำเภอ : {item["bdistrict"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      จังหวัด : {item["province"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      รหัสไปรษณีย์ : {item["bzip_code"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      วันรับรถ : {item["bdate_s"]}
+                    </p>
+                    <p className="w-full h-16 text-lg text-black flex justify-center items-center">
+                      วันคืนรถ : {item["bdate_e"]}
+                    </p>
                   </div>
                 </div>
                 <div className="h-[10rem] w-full mt-10 flex justify-center items-center">
