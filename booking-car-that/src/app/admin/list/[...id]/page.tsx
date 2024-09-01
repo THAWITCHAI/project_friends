@@ -18,6 +18,17 @@ export default function List_id({ params }: Props) {
       .then((res) => setBooking(res));
   };
 
+  const confirm_car = async (cid: any) => {
+    const res = await fetch("/api/confirm_car", {
+      method: "POST",
+      body: JSON.stringify(cid),
+    });
+    if (res.ok) {
+      const resp = await res.json();
+      return alert(resp["massage"]);
+    }
+  };
+
   return (
     <div className="h-full w-full">
       {booking.map((item, index) => {
@@ -30,9 +41,10 @@ export default function List_id({ params }: Props) {
               <Sidebar />
               <div className="w-[82%] h-full overflow-y-scroll text-gray-500 p-10">
                 <div className="w-full h-32 text-white text-5xl flex justify-center items-center bg-green-500 rounded-lg">
-                  {item["sname"]}
+                  {String(item["sid"]) === "2" ?
+                    "กรุณารอ กำลังอนุมัติการจอง":item['sname']}
                 </div>
-                <div className=" h-[20rem] w-full overflow-hidden flex justify-around items-center">
+                <div className=" h-[20rem] w-full overflow-hidden flex justify-around items-center mt-10">
                   <div className="w-fit h-fit rounded-lg overflow-hidden">
                     <Image
                       src={String(item["uprofile"])}
@@ -227,31 +239,31 @@ export default function List_id({ params }: Props) {
                       ข้อมูลสถานที่
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      ชื่อสถานที่ : {item['bnamelocation']}
+                      ชื่อสถานที่ : {item["bnamelocation"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      ถนน : {item['broad']}
+                      ถนน : {item["broad"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      ซอย : {item['balley']}
+                      ซอย : {item["balley"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      แขวง/ตำบล : {item['bsubdistrict']}
+                      แขวง/ตำบล : {item["bsubdistrict"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      อำเภอ : {item['bdistrict']}
+                      อำเภอ : {item["bdistrict"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      จังหวัด : {item['province']}
+                      จังหวัด : {item["province"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      รหัสไปรษณีย์ : {item['bzip_code']}
+                      รหัสไปรษณีย์ : {item["bzip_code"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      วันรับรถ : {item['bdate_s']}
+                      วันรับรถ : {item["bdate_s"]}
                     </p>
                     <p className="w-full h-16 text-lg text-black flex justify-center items-center">
-                      วันคืนรถ : {item['bdate_e']}
+                      วันคืนรถ : {item["bdate_e"]}
                     </p>
                   </div>
                 </div>
@@ -265,7 +277,15 @@ export default function List_id({ params }: Props) {
                     >
                       กลับ
                     </button>
-                    <button className="w-1/4 h-[2rem] text-white bg-green-500 rounded-lg active:scale-90 transition-all ease-in-out">
+                    <button
+                      className="w-1/4 h-[2rem] text-white bg-green-500 rounded-lg active:scale-90 transition-all ease-in-out"
+                      onClick={() => {
+                        const data = {
+                          cid: item["cid"],
+                        };
+                        confirm_car(data);
+                      }}
+                    >
                       อนุมัติการคืน
                     </button>
                   </div>

@@ -29,7 +29,9 @@ export default function List_id_Client({ params }: Props) {
               <Sidebar />
               <div className="w-[83%] h-full overflow-y-scroll text-gray-500 p-10">
                 <div className="w-full h-32 text-white text-5xl flex justify-center items-center bg-green-500 rounded-lg">
-                  {item["sname"]}
+                  {String(item["sid"]) === "2"
+                    ? "กรุณารอ กำลังอนุมัติการจอง"
+                    : item["sname"]}
                 </div>
                 <div className=" h-[20rem] w-full overflow-hidden flex justify-around items-center mt-10">
                   <div className="w-fit h-fit rounded-lg overflow-hidden">
@@ -255,9 +257,6 @@ export default function List_id_Client({ params }: Props) {
                       }}
                     >
                       กลับ
-                    </button>
-                    <button className="w-1/4 h-[2rem] text-white bg-red-500 rounded-lg active:scale-90 transition-all ease-in-out">
-                      ลบ
                     </button>
                   </div>
                 </div>
