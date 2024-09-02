@@ -2,11 +2,66 @@
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 type Props = {};
 
 export default function Home({}: Props) {
+  const [form, setForm] = useState({});
+  const [base64_profile, setBase64_profile] = useState<String | null>(null);
+  const [base64, setBase64] = useState<String | null>(null);
+
+  const handleFileProfileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBase64_profile(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  const handleFileDiveChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBase64(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleChang = (e: any) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    if (
+      Object.keys(form).length <= 6 &&
+      base64 == null &&
+      base64_profile == null
+    ) {
+      return alert("กรุณากรอกให้ครับ!!");
+    } else {
+      const data = Object.assign(
+        {},
+        form,
+        { uprofile: base64_profile },
+        { udive: base64 },
+      );
+      await fetch("/api/user", {
+        method: "POST",
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((res) => alert(res["massage"]));
+    }
+  };
+
   const [select, setSelete] = useState(0);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -119,9 +174,11 @@ export default function Home({}: Props) {
                     <label htmlFor="">ชื่อผู้ใช้</label>
                     <br />
                     <input
+                      onChange={handleChang}
                       required
                       className="input-text"
                       type="text"
+                      name="uname"
                       placeholder="กรุณากรอกให้ครบ"
                     />
                   </div>
@@ -129,9 +186,11 @@ export default function Home({}: Props) {
                     <label htmlFor="">ชื่อเล่น</label>
                     <br />
                     <input
+                      onChange={handleChang}
                       required
                       className="input-text"
                       type="text"
+                      name="unick_name"
                       placeholder="กรุณากรอกให้ครบ"
                     />
                   </div>
@@ -139,9 +198,11 @@ export default function Home({}: Props) {
                     <label htmlFor="">อีเมลล์</label>
                     <br />
                     <input
+                      onChange={handleChang}
                       required
                       className="input-text"
                       type="text"
+                      name="uemail"
                       placeholder="กรุณากรอกให้ครบ"
                     />
                   </div>
@@ -149,14 +210,16 @@ export default function Home({}: Props) {
                     <label htmlFor="">รหัสผ่าน</label>
                     <br />
                     <input
+                      onChange={handleChang}
                       required
                       className="input-text"
                       type="text"
+                      name="upwd"
                       placeholder="กรุณากรอกให้ครบ"
                     />
                   </div>
                   <div className="input-1">
-                    <label htmlFor="">ยืยันรหัสผ่าน</label>
+                    <label htmlFor="">ยืยยันรหัสผ่าน</label>
                     <br />
                     <input
                       required
@@ -169,21 +232,33 @@ export default function Home({}: Props) {
                     <label htmlFor="">เบอร์โทร</label>
                     <br />
                     <input
+                      onChange={handleChang}
                       required
                       className="input-text"
                       type="text"
+                      name="uphone"
                       placeholder="กรุณากรอกให้ครบ"
                     />
                   </div>
                   <div className="input-1">
                     <label htmlFor="">ใบอนุญาติการขับขี่</label>
                     <br />
-                    <input className="input-file" type="file" required />
+                    <input
+                      className="input-file"
+                      type="file"
+                      required
+                      onChange={handleFileDiveChange}
+                    />
                   </div>
                   <div className="input-1">
                     <label htmlFor="">รูปโปรไฟล์</label>
                     <br />
-                    <input className="input-file" type="file" required />
+                    <input
+                      className="input-file"
+                      type="file"
+                      required
+                      onChange={handleFileProfileChange}
+                    />
                   </div>
                 </div>
                 <div className="btn-register">
@@ -191,6 +266,7 @@ export default function Home({}: Props) {
                     <button
                       onClick={(e) => {
                         e.preventDefault();
+                        handleSubmit();
                       }}
                     >
                       ยืนยันลงทะเบียน
@@ -215,10 +291,10 @@ export default function Home({}: Props) {
     );
   }
   if (status === "authenticated" && session) {
-    if(session.user.rname==='User'){
+    if (session.user.rname === "User") {
       return router.replace("/client/booking");
     }
-    if(session.user.rname==='Admin'){
+    if (session.user.rname === "Admin") {
       return router.replace("/admin/welcome");
     }
   }
