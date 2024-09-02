@@ -1,113 +1,120 @@
 import Image from "next/image";
+import Navbar from "./_components/Navbar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div>
+      <Navbar />
+      <div className="mt-10 h-[20rem] w-full flex justify-center items-center">
+        <Carousel className="w-[90%] h-full flex justify-center items-center">
+          <CarouselContent className=" w-full h-full">
+            <CarouselItem className="flex justify-around items-center w-full h-full">
+              <Image
+                src={"/2.webp"}
+                width={400}
+                height={400}
+                alt=""
+                className="rounded-lg"
+              />
+              <div className="w-[40rem]  h-[16.75rem] pl-10">
+                <p className=" w-full h-[70%]">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Tenetur dolore natus vero ipsum id sequi, soluta dolorem
+                  explicabo, iste totam quisquam temporibus ea dicta repellat
+                  reiciendis illo deserunt amet ipsam! Excepturi modi, ullam
+                  voluptatibus ex accusamus iure delectus in dolores natus nulla
+                  numquam illum inventore aspernatur consequuntur velit, laborum
+                  vero!
+                </p>
+                <div className="w-full h-[30%]  flex justify-center items-center">
+                  <button className="w-[15rem] h-1/2 text-red-500 ring-1 ring-rose-500 flex justify-center items-center rounded-md active:scale-90 transition-all ease-linear">
+                    ดูเพิ่มเติม
+                  </button>
+                </div>
+              </div>
+            </CarouselItem>
+            <CarouselItem className="flex justify-around items-center w-full h-full">
+              <Image
+                src={"/1.webp"}
+                width={400}
+                height={400}
+                alt=""
+                className="rounded-lg"
+              />
+              <div className="w-[40rem]  h-[16.75rem] pl-10">
+                <p className=" w-full h-[70%]">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Tenetur dolore natus vero ipsum id sequi, soluta dolorem
+                  explicabo, iste totam quisquam temporibus ea dicta repellat
+                  reiciendis illo deserunt amet ipsam! Excepturi modi, ullam
+                  voluptatibus ex accusamus iure delectus in dolores natus nulla
+                  numquam illum inventore aspernatur consequuntur velit, laborum
+                  vero!
+                </p>
+                <div className="w-full h-[30%]  flex justify-center items-center">
+                  <button className="w-[15rem] h-1/2 text-red-500 ring-1 ring-rose-500 flex justify-center items-center rounded-md active:scale-90 transition-all ease-linear">
+                    ดูเพิ่มเติม
+                  </button>
+                </div>
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
+      <div className="mt-10 w-full h-[20rem] p-10 flex justify-center items-center">
+        <div className="w-1/2 h-full">
+          <h1 className="text-3xl text-center">คําขวัญ เมืองอุบลราชธานี</h1>
+          <p className="w-full mt-10 h-[10rem] flex justify-center items-center text-xl text-center">
+            “เมืองดอกบัวงาม แม่น้ำสองสี มีปลาแซบหลาย หาดทรายแก่งหิน
+            <br />
+            ถิ่นไทยนักปราชญ์ ทวยราษฎร์ใฝ่ธรรม งามล้ำเทียนพรรษา
+            <br />
+            ผาแต้มก่อนประวัติศาสตร์ ฉลาดภูมิปัญญาท้องถิ่น
+            <br />
+            ดินแดนอนุสาวรีย์คนดีศรีอุบล”
+          </p>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="bg-[#000F08] h-[7rem] flex justify-around items-center">
+        <div className="w-[20%] h-1/2 text-white text-lg flex justify-center items-center text-center">
+          &copy; 2024 ท่องเที่ยวอุบลราชธานี
+        </div>
+        <div className="w-[20%] h-full flex justify-between items-center">
+          <div className="w-[20%] h-1/2 text-white text-lg flex justify-center items-center text-center">
+            <Link
+              target="_blank"
+              href={"https://www.facebook.com/phongsathon.Namsaeno.9"}
+            >
+              <Image src={"/facebook.png"} width={40} height={40} alt="" />
+            </Link>
+          </div>
+          <div className="w-[20%] h-1/2 text-white text-lg flex justify-center items-center text-center">
+            <Link
+              target="_blank"
+              href={
+                "https://www.instagram.com/hairiakpomwaharameiei?igsh=d2o1aGV2bW5nMm15"
+              }
+            >
+              <Image src={"/instagram.png"} width={40} height={40} alt="" />
+            </Link>
+          </div>
+          <div className="w-[20%] h-1/2 text-white text-lg flex justify-center items-center text-center">
+            <Link href={""} target="_blank">
+              <Image src={"/line.png"} width={40} height={40} alt="" />
+            </Link>
+          </div>
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
