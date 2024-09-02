@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Navbar from "./_components/Navbar";
 import {
   Carousel,
   CarouselContent,
@@ -12,7 +11,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <Navbar />
+      
       <div className="mt-10 h-[20rem] w-full flex justify-center items-center">
         <Carousel className="w-[90%] h-full flex justify-center items-center">
           <CarouselContent className=" w-full h-full">
