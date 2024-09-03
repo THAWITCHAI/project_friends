@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import {
   Carousel,
@@ -7,11 +8,46 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session, status } = useSession();
   return (
     <div>
-      
+      {status === "authenticated" && (
+        <div className="border w-full h-[6rem] p-2 flex justify-around items-center">
+          <div className="w-[10%] h-full active:scale-90 transition-all ease-out hover:ring-1 hover:ring-rose-500 rounded-md">
+            <Link href={""} className="w-full h-full">
+              <div className="h-1/2 w-full flex justify-center items-center">
+                <Image src={"/home.png"} width={24} height={24} alt="" />
+              </div>
+              <h1 className="h-1/2 w-full flex justify-center items-center">
+                หน้าหลัก
+              </h1>
+            </Link>
+          </div>
+          <div className="w-[10%] h-full active:scale-90 transition-all ease-out hover:ring-1 hover:ring-rose-500 rounded-md">
+            <Link href={""} className="w-full h-full">
+              <div className="h-1/2 w-full flex justify-center items-center">
+                <Image src={"/destination.png"} width={24} height={24} alt="" />
+              </div>
+              <h1 className="h-1/2 w-full flex justify-center items-center">
+                สถานที่ท่องเที่ยว
+              </h1>
+            </Link>
+          </div>
+          <div className="w-[10%] h-full active:scale-90 transition-all ease-out hover:ring-1 hover:ring-rose-500 rounded-md">
+            <Link href={""} className="w-full h-full">
+              <div className="h-1/2 w-full flex justify-center items-center">
+                <Image src={"/restaurant.png"} width={24} height={24} alt="" />
+              </div>
+              <h1 className="h-1/2 w-full flex justify-center items-center">
+                ร้านอาหาร
+              </h1>
+            </Link>
+          </div>
+        </div>
+      )}
       <div className="mt-10 h-[20rem] w-full flex justify-center items-center">
         <Carousel className="w-[90%] h-full flex justify-center items-center">
           <CarouselContent className=" w-full h-full">
