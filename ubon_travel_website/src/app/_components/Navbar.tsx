@@ -46,7 +46,7 @@ export default function Navbar({}: Props) {
           )}
           {status === "authenticated" && (
             <div className="w-[16rem] h-full flex justify-between items-center">
-              <h1 className="text-xl text-white flex justify-center items-center h-full">
+              <h1 className="text-xl text-white flex justify-center items-center h-full overflow-hidden">
                 {session.user?.name}
               </h1>
 

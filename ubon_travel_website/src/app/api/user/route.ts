@@ -1,0 +1,30 @@
+import { NextResponse } from "next/server";
+
+export async function POST(req: any) {
+  const { email, password } = await req.json();
+  const user = [
+    {
+      id: 1,
+      name: "Thawitchai Boonsong",
+      email: "thawitchai@gmail.com",
+      password: "13495000",
+      role: 1,
+    },
+    {
+      id: 2,
+      name: "Phacharaporn Phahyad",
+      email: "pam@gmail.com",
+      password: "1234",
+      role: 2,
+    },
+  ];
+
+  const result = user.filter(
+    (item) => password === item["password"] && email === item["email"]
+  );
+  if (result) {
+    return NextResponse.json(result[0], { status: 200 });
+  } else {
+    return NextResponse.json({ massage: "Not Found" }, { status: 404 });
+  }
+}

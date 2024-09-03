@@ -9,15 +9,24 @@ import {
 } from "@/components/ui/carousel";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { data: session, status } = useSession();
+  const router = useRouter();
+  
+  if (String(session?.user.role) === "1") {
+    return router.replace("/hee");
+  }
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       {status === "authenticated" && (
         <div className="border w-full h-[6rem] p-2 flex justify-around items-center">
           <div className="w-[10%] h-full active:scale-90 transition-all ease-out hover:ring-1 hover:ring-rose-500 rounded-md">
-            <Link href={""} className="w-full h-full">
+            <Link href={"/"} className="w-full h-full">
               <div className="h-1/2 w-full flex justify-center items-center">
                 <Image src={"/home.png"} width={24} height={24} alt="" />
               </div>
@@ -43,6 +52,16 @@ export default function Home() {
               </div>
               <h1 className="h-1/2 w-full flex justify-center items-center">
                 ร้านอาหาร
+              </h1>
+            </Link>
+          </div>
+          <div className="w-[10%] h-full active:scale-90 transition-all ease-out hover:ring-1 hover:ring-rose-500 rounded-md">
+            <Link href={""} className="w-full h-full">
+              <div className="h-1/2 w-full flex justify-center items-center">
+                <Image src={"/resident.png"} width={24} height={24} alt="" />
+              </div>
+              <h1 className="h-1/2 w-full flex justify-center items-center">
+                ที่พัก
               </h1>
             </Link>
           </div>
