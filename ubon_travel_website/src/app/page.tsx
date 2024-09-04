@@ -10,21 +10,23 @@ import {
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Navbar from "./_components/Navbar";
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  
+
   if (String(session?.user.role) === "1") {
-    return router.replace("/hee");
+    return router.replace("/admin/allUser");
   }
   if (status === "loading") {
     return <div>Loading...</div>;
   }
   return (
-    <div>
+    <div className="w-full h-full overflow-y-scroll">
+      <Navbar />
       {status === "authenticated" && (
-        <div className="border w-full h-[6rem] p-2 flex justify-around items-center">
+        <div className="w-full h-[6rem] p-2 flex justify-around items-center shadow-md">
           <div className="w-[10%] h-full active:scale-90 transition-all ease-out hover:ring-1 hover:ring-rose-500 rounded-md">
             <Link href={"/"} className="w-full h-full">
               <div className="h-1/2 w-full flex justify-center items-center">
@@ -67,7 +69,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      <div className="mt-10 h-[20rem] w-full flex justify-center items-center">
+      <div className="mt-10 h-[20rem] w-full flex justify-center items-center p-5">
         <Carousel className="w-[90%] h-full flex justify-center items-center">
           <CarouselContent className=" w-full h-full">
             <CarouselItem className="flex justify-around items-center w-full h-full">
@@ -139,7 +141,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="bg-[#000F08] h-[7rem] flex justify-around items-center">
+      <div className="bg-[#000F08] h-[7rem] flex justify-around items-center w-full">
         <div className="w-[20%] h-1/2 text-white text-lg flex justify-center items-center text-center">
           &copy; 2024 ท่องเที่ยวอุบลราชธานี
         </div>

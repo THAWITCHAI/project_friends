@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/app/_components/Navbar";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -27,7 +28,9 @@ export default function Login({}: Props) {
 
   if (status === "unauthenticated") {
     return (
-      <div className="h-[30rem] mt-10 p-5 flex justify-center items-center">
+      <div className="w-full h-full">
+        <Navbar/>
+        <div className="h-[30rem] mt-10 p-5 flex justify-center items-center">
         <div className="relative w-[70%] h-full rounded-3xl overflow-hidden shadow-2xl">
           {/* Container for the slide animation */}
           <div
@@ -160,6 +163,7 @@ export default function Login({}: Props) {
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }
