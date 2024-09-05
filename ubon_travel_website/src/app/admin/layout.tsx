@@ -2,16 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function RootLayout({
   children,
@@ -20,6 +13,9 @@ export default function RootLayout({
 }>) {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [menuAdd, setMenuAdd] = useState(false);
+  const [menuShow, setMenuShow] = useState(false);
+
   if (status === "authenticated") {
     return (
       <div className="w-full h-full flex">
@@ -32,50 +28,106 @@ export default function RootLayout({
             </h1>
           </div>
           {/* Menu Section */}
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none">
+          <div className="h-2/3">
+            <button
+              className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none ease-in-out"
+              onClick={() => setMenuAdd(!menuAdd)}
+            >
+              <Image src={"/add.png"} width={20} height={20} alt="" />
+              <span className="text-base font-medium">เพิ่มข้อมูล</span>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                menuAdd ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              }`}
+              style={{ transitionDuration: "0.25s" }}
+            >
+              <Link href={'/admin/allUser'}>
+              <button
+                className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
+              >
                 <Image src={"/add.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">เพิ่มข้อมูล</span>
+                <span className="text-base font-medium">สถานที่ท่องเที่ยว</span>
               </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-[15rem]">
-              <DropdownMenuLabel>เลือก</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>สถานที่</DropdownMenuItem>
-              <DropdownMenuItem>ร้านอาหาร</DropdownMenuItem>
-              <DropdownMenuItem>ที่พัก</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <br />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none">
+              </Link>
+              <Link href={'/admin/allUser'}>
+              <button
+                className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
+              >
+                <Image src={"/add.png"} width={20} height={20} alt="" />
+                <span className="text-base font-medium">ร้านอาหาร</span>
+              </button>
+              </Link>
+              <Link href={'/admin/allUser'}>
+              <button
+                className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
+              >
+                <Image src={"/add.png"} width={20} height={20} alt="" />
+                <span className="text-base font-medium">ที่พักอาศัย</span>
+              </button>
+              </Link>
+
+              
+            </div>
+            <br />
+            <button
+              className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none ease-in-out"
+              onClick={() => setMenuShow(!menuShow)}
+            >
+              <Image src={"/database.png"} width={20} height={20} alt="" />
+              <span className="text-base font-medium">แสดงข้อมูล</span>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                menuShow ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              }`}
+              style={{ transitionDuration: "0.25s" }}
+            >
+              <Link href={'/admin/allTravels'}>
+              <button
+                className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
+              >
                 <Image src={"/database.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">แสดงข้อมูล</span>
+                <span className="text-base font-medium">สถานที่ท่องเที่ยว</span>
               </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-[15rem]">
-              <DropdownMenuLabel>เลือก</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>สถานที่</DropdownMenuItem>
-              <DropdownMenuItem>ร้านอาหาร</DropdownMenuItem>
-              <DropdownMenuItem>ที่พัก</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              </Link>
+              <Link href={'/admin/allUser'}>
+              <button
+                className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
+              >
+                <Image src={"/database.png"} width={20} height={20} alt="" />
+                <span className="text-base font-medium">ร้านอาหาร</span>
+              </button>
+              </Link>
+              <Link href={'/admin/allUser'}>
+              <button
+                className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
+              >
+                <Image src={"/database.png"} width={20} height={20} alt="" />
+                <span className="text-base font-medium">ที่พักอาศัย</span>
+              </button>
+              <button
+                className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
+              >
+                <Image src={"/database.png"} width={20} height={20} alt="" />
+                <span className="text-base font-medium">ผู้ใช้</span>
+              </button>
+              </Link>
+            </div>
+          </div>
+
           <button
             onClick={() => {
               signOut();
             }}
-            className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none mt-[22rem]"
+            className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none mt-[3rem]"
           >
             <Image src={"/logout.png"} width={20} height={20} alt="" />
             <span className="text-base font-medium">ออกจากระบบ</span>
           </button>
         </div>
         {/* Main Content */}
-        <div className="h-screen w-4/5 p-4 bg-gray-100 overflow-auto">
+        <div className="h-screen w-4/5 p-4 bg-white overflow-auto">
           {children}
         </div>
       </div>
