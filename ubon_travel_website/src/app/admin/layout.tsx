@@ -20,10 +20,10 @@ export default function RootLayout({
     return (
       <div className="w-full h-full flex">
         {/* Sidebar */}
-        <div className="h-screen w-1/5 bg-gradient-to-b from-rose-400 to-rose-500 text-white p-4">
+        <div className="h-screen w-[17%] bg-gradient-to-b from-rose-400 to-rose-500 text-white p-4">
           {/* Logo Section */}
           <div className="mb-8">
-            <h1 className="text-xl font-bold tracking-wide text-center">
+            <h1 className="text-xl font-mono font-thin tracking-wide text-center">
               Travel Ubon
             </h1>
           </div>
@@ -34,7 +34,7 @@ export default function RootLayout({
               onClick={() => setMenuAdd(!menuAdd)}
             >
               <Image src={"/add.png"} width={20} height={20} alt="" />
-              <span className="text-base font-medium">เพิ่มข้อมูล</span>
+              <span className="text-base font-thin">เพิ่มข้อมูล</span>
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
@@ -42,28 +42,28 @@ export default function RootLayout({
               }`}
               style={{ transitionDuration: "0.25s" }}
             >
-              <Link href={'/admin/allUser'}>
+              <Link href={'/admin/add/Travel'}>
               <button
                 className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
               >
                 <Image src={"/add.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">สถานที่ท่องเที่ยว</span>
+                <span className="text-base font-thin">สถานที่ท่องเที่ยว</span>
               </button>
               </Link>
-              <Link href={'/admin/allUser'}>
+              <Link href={''}>
               <button
                 className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
               >
                 <Image src={"/add.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">ร้านอาหาร</span>
+                <span className="text-base font-thin">ร้านอาหาร</span>
               </button>
               </Link>
-              <Link href={'/admin/allUser'}>
+              <Link href={''}>
               <button
                 className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
               >
                 <Image src={"/add.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">ที่พักอาศัย</span>
+                <span className="text-base font-thin">ที่พักอาศัย</span>
               </button>
               </Link>
 
@@ -75,7 +75,7 @@ export default function RootLayout({
               onClick={() => setMenuShow(!menuShow)}
             >
               <Image src={"/database.png"} width={20} height={20} alt="" />
-              <span className="text-base font-medium">แสดงข้อมูล</span>
+              <span className="text-base font-thin">แสดงข้อมูล</span>
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
@@ -83,34 +83,34 @@ export default function RootLayout({
               }`}
               style={{ transitionDuration: "0.25s" }}
             >
-              <Link href={'/admin/allTravels'}>
+              <Link href={'/admin/show/Travels'}>
               <button
                 className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
               >
                 <Image src={"/database.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">สถานที่ท่องเที่ยว</span>
+                <span className="text-base font-thin">สถานที่ท่องเที่ยว</span>
               </button>
               </Link>
-              <Link href={'/admin/allUser'}>
+              <Link href={''}>
               <button
                 className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
               >
                 <Image src={"/database.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">ร้านอาหาร</span>
+                <span className="text-base font-thin">ร้านอาหาร</span>
               </button>
               </Link>
-              <Link href={'/admin/allUser'}>
+              <Link href={''}>
               <button
                 className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
               >
                 <Image src={"/database.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">ที่พักอาศัย</span>
+                <span className="text-base font-thin">ที่พักอาศัย</span>
               </button>
               <button
                 className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none"
               >
                 <Image src={"/database.png"} width={20} height={20} alt="" />
-                <span className="text-base font-medium">ผู้ใช้</span>
+                <span className="text-base font-thin">ผู้ใช้</span>
               </button>
               </Link>
             </div>
@@ -123,11 +123,11 @@ export default function RootLayout({
             className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none mt-[3rem]"
           >
             <Image src={"/logout.png"} width={20} height={20} alt="" />
-            <span className="text-base font-medium">ออกจากระบบ</span>
+            <span className="text-base font-thin">ออกจากระบบ</span>
           </button>
         </div>
         {/* Main Content */}
-        <div className="h-screen w-4/5 p-4 bg-white overflow-auto">
+        <div className="h-screen w-[83%] p-4 bg-white overflow-auto">
           {children}
         </div>
       </div>

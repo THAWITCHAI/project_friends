@@ -1,5 +1,5 @@
 "use client";
-import getUser from "@/app/lib/globalApi";
+import travelModule from "@/app/lib/globalApi";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -8,7 +8,7 @@ type Props = {};
 export default function AllUser({}: Props) {
   const [search, setSearch] = useState("");
 
-  const data_demo = getUser();
+  const data_demo = travelModule.getTravels();
   const result = data_demo.filter((item) => {
     return (
       item.travel_name.toUpperCase().includes(search.toUpperCase()) ||
@@ -81,7 +81,7 @@ export default function AllUser({}: Props) {
                       <td className="px-6 py-4">{item.travel_type}</td>
                       <td className="px-6 py-4">
                         <button className="hover:bg-blue-500 w-[5rem] h-[2.5rem] bg-blue-400 text-white rounded-lg text-sm border-none active:scale-90 transition-all ease-in-out">
-                          <Link href={`/admin/allTravels/${item.travel_id}`} className="w-full h-full">
+                          <Link href={`/admin/show/Travels/${item.travel_id}`} className="w-full h-full">
                             ดูเพิ่มเติม
                           </Link>
                         </button>

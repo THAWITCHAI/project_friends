@@ -17,7 +17,7 @@ export default function Home() {
   const router = useRouter();
 
   if (String(session?.user.role) === "1") {
-    return router.replace("/admin/allTravels");
+    return router.replace("/admin/show/Travels");
   }
   if (status === "loading") {
     return <div>Loading...</div>;
