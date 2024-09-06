@@ -1,3 +1,4 @@
+
 const dataTravel_demo = [
   {
     travel_id: 1,
@@ -68,6 +69,21 @@ const getTravels = () => {
   return dataTravel_demo;
 };
 
+const getTypeTravels = async () => {
+  try {
+    const response = await fetch("/api/type_travels");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+    return null;
+  }
+};
+
+
 const getDetailTravel = (id: any) => {
   const data = dataTravel_demo.filter(
     (item) => item["travel_id"] === Number(id)
@@ -78,6 +94,7 @@ const getDetailTravel = (id: any) => {
 const travelModule = {
   getTravels,
   getDetailTravel,
+  getTypeTravels,
 };
 
 export default travelModule;
