@@ -14,14 +14,13 @@ export default function RootLayout({
   const { data: session, status } = useSession();
   const router = useRouter();
   const [menuAdd, setMenuAdd] = useState(false);
-  const [menuAdd2, setMenuAdd2] = useState(false);
   const [menuShow, setMenuShow] = useState(false);
 
   if (status === "authenticated") {
     return (
       <div className="w-full h-full flex">
         {/* Sidebar */}
-        <div className="h-screen w-[17%] bg-gradient-to-b from-blue-400 to-blue-500 text-white p-4">
+        <div className="h-screen w-[20%] bg-gradient-to-b from-blue-400 to-blue-500 text-white p-4">
           {/* Logo Section */}
           <div className="mb-8">
             <h1 className="text-xl font-mono font-thin tracking-wide text-center">
@@ -29,7 +28,7 @@ export default function RootLayout({
             </h1>
           </div>
           {/* Menu Section */}
-          <div className="h-2/3 overflow-hidden overflow-y-scroll">
+          <div className="h-2/3 overflow-hidden overflow-y-scroll scrollbar-hide">
             <button
               className="flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none ease-in-out"
               onClick={() => setMenuAdd(!menuAdd)}
@@ -127,7 +126,7 @@ export default function RootLayout({
           </button>
         </div>
         {/* Main Content */}
-        <div className="h-screen w-[83%] p-4 bg-white overflow-auto">
+        <div className="h-screen w-[80%] p-4 bg-white overflow-auto">
           {children}
         </div>
       </div>

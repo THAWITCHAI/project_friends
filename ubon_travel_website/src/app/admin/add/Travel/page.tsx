@@ -135,6 +135,19 @@ export default function AddTravel({}: Props) {
             />
           </div>
           <div className="w-full h-fit flex justify-start items-center">
+            <li className="w-full h-[2rem] ">ข้อมูลติดต่อ</li>
+          </div>
+          <div className="w-full h-fit mb-3 flex justify-between items-center">
+            <input
+              required
+              name="travel_call"
+              onChange={handleChang}
+              type="number"
+              className="w-[100%] border h-[3rem] p-2 rounded-lg outline-none"
+              placeholder="เบอร์"
+            />
+          </div>
+          <div className="w-full h-fit flex justify-start items-center">
             <li className="w-full h-[2rem] ">เวลาทำการ</li>
           </div>
           <div className="w-full h-fit mb-3 flex justify-between items-center">

@@ -98,3 +98,14 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* ซ่อนแถบเลื่อนใน Chrome, Safari และ Edge */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ซ่อนแถบเลื่อนใน Firefox */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+}
