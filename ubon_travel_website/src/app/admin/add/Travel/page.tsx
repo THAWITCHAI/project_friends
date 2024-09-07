@@ -15,9 +15,21 @@ export default function AddTravel({}: Props) {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(form);
     console.log(Object.keys(form).length);
+    if (Object.keys(form).length < 15) {
+      return alert("กรุณากรอกให้ครบ!!");
+    } else {
+      const res = await fetch("/api/travel", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+      if(res.ok){
+        const resp = await res.json()
+        return alert(resp['massage'])
+      }
+    }
     return;
   };
 
@@ -240,6 +252,7 @@ export default function AddTravel({}: Props) {
           </div>
           <div className="w-full h-fit mb-3 flex justify-between items-center">
             <input
+              onChange={handleChang}
               required
               name="travel_image_1"
               type="file"
@@ -254,6 +267,7 @@ export default function AddTravel({}: Props) {
           </div>
           <div className="w-full h-fit mb-3 flex justify-between items-center">
             <input
+              onChange={handleChang}
               required
               name="travel_image_2"
               type="file"
@@ -268,6 +282,7 @@ export default function AddTravel({}: Props) {
           </div>
           <div className="w-full h-fit mb-3 flex justify-between items-center">
             <input
+              onChange={handleChang}
               required
               name="travel_image_3"
               type="file"
