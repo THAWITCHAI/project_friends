@@ -15,6 +15,7 @@ export default function AddTravel({}: Props) {
     });
   };
 
+
   const handleSubmit = async () => {
     console.log(form);
     console.log(Object.keys(form).length);
@@ -32,6 +33,7 @@ export default function AddTravel({}: Props) {
     }
     return;
   };
+
 
   useEffect(() => {
     travelModule.getTypeTravels().then((res: any) => setDataTypeTravel(res));
