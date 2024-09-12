@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -108,4 +109,16 @@ body {
 /* ซ่อนแถบเลื่อนใน Firefox */
 .scrollbar-hide {
   scrollbar-width: none; /* Firefox */
+}
+.back-title{
+  /* background-image: url('/back.jpg'); */
+  /* backdrop-filter: blur; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.title{
+  font-family: "Charmonman", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
