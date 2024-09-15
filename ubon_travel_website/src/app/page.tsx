@@ -78,7 +78,7 @@ export default function Home() {
                 </p>
                 <div className="w-full h-[5rem] flex justify-center items-center">
                   <Button className="border bg-color-none hover:bg-color-none active:scale-90 transition-all ease-in-out font-thin">
-                    ดูสถานที่อื่นๆ
+                    <Link href={'/6'}>ดูสถานที่อื่นๆ</Link>
                   </Button>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function Home() {
                 </p>
                 <div className="w-full h-[5rem] flex justify-center items-center">
                   <Button className="border bg-color-none hover:bg-color-none active:scale-90 transition-all ease-in-out font-thin">
-                    ดูสถานที่อื่นๆ
+                  <Link href={'/3'}>ดูสถานที่อื่นๆ</Link>
                   </Button>
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function Home() {
                 </p>
                 <div className="w-full h-[5rem] flex justify-center items-center">
                   <Button className="border bg-color-none hover:bg-color-none active:scale-90 transition-all ease-in-out font-thin">
-                    ดูสถานที่อื่นๆ
+                  <Link href={'/7'}>ดูสถานที่อื่นๆ</Link>
                   </Button>
                 </div>
               </div>
