@@ -20,11 +20,12 @@ export default function Navbar({}: Props) {
   const router = useRouter();
   return (
     <div className="w-full h-fit">
-      <div className="border h-[4rem] w-full bg-rose-500 flex justify-between items-center pl-5 pr-5">
+      <div className="h-[4rem] w-full flex justify-between items-center pl-5 pr-5">
         <div className="w-[20rem]">
           <Image
             src={"/lotus.png"}
             width={50}
+            className="cursor-pointer"
             height={50}
             alt="Logo"
             onClick={() => {
@@ -32,27 +33,24 @@ export default function Navbar({}: Props) {
             }}
           />
         </div>
-        <h1 className="text-white text-3xl">TEAVEL UBON RATCHATHANI</h1>
         <div className="w-[20rem] h-full flex justify-end items-center">
           {status == "unauthenticated" && (
             <Link
               href={"/authen/login"}
-              className=" w-[48%] h-[60%] active:scale-90 transition-all ease-in-out bg-white rounded-lg"
+              className=" w-fit h-fit active:scale-90 transition-all ease-in-outrounded-lg"
             >
-              <button className="w-full h-full text-lg text-red-500 ">
-                ล็อคอิน
-              </button>
+              <Image src={"/profile_1.png"} width={30} height={30} alt="" />
             </Link>
           )}
           {status === "authenticated" && (
-            <div className="w-[16rem] h-full flex justify-between items-center">
-              <h1 className="text-xl text-white flex justify-center items-center h-full overflow-hidden">
+            <div className="w-[14rem] h-full flex justify-between items-center">
+              <h1 className="text-[14px] text-white flex justify-center items-center h-full overflow-hidden">
                 {session.user?.name}
               </h1>
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Image src={"/user.png"} width={40} height={40} alt="" />
+                  <Image src={"/profile_1.png"} width={30} height={30} alt="" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>

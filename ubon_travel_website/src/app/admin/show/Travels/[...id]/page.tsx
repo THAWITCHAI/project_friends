@@ -38,7 +38,6 @@ interface TravelDetail {
   travel_call: string;
 }
 
-
 export default function TravelDetail({ params }: Props) {
   const { id } = params;
   const [data, setData] = useState<TravelDetail[]>([]);
@@ -55,8 +54,14 @@ export default function TravelDetail({ params }: Props) {
         const url = item.travel_url;
         return (
           <div key={index} className="w-full p-4 rounded-lg">
-            <h1 className="p-2 text-4xl text-blue-500 border-b">
+            <h1 className="p-2 text-4xl text-blue-500 border-b flex justify-between items-center">
               {item.travel_name}
+              <button
+                className="text-lg text-yellow-500"
+                onClick={() => history.back()}
+              >
+                กลับหน้าหลัก
+              </button>
             </h1>
             <div className=" mt-5 h-[25rem] flex justify-between items-center">
               <div className="h-full w-[49%] px-10 overflow-hidden">

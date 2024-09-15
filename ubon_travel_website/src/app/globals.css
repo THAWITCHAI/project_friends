@@ -25,8 +25,8 @@
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 @layer utilities {
@@ -111,8 +111,6 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 .back-title{
-  /* background-image: url('/back.jpg'); */
-  /* backdrop-filter: blur; */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -121,4 +119,10 @@ body {
   font-family: "Charmonman", cursive;
   font-weight: 400;
   font-style: normal;
+}
+.template{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 3rem;
+  grid-template-rows: auto;
 }
