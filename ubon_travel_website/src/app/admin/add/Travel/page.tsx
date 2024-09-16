@@ -1,12 +1,51 @@
 "use client";
 import travelModule from "@/app/lib/globalApi";
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 type Props = {};
 
-export default function AddTravel({}: Props) {
+export default function AddTravel({ }: Props) {
   const [dataTypeTravel, setDataTypeTravel] = useState([]);
   const [form, setForm] = useState({});
+  const [travel_image_1, setTravel_image_1] = useState<String | null>(null);
+  const [travel_image_2, setTravel_image_2] = useState<String | null>('-');
+  const [travel_image_3, setTravel_image_3] = useState<String | null>('-');
+
+
+
+  const handleFileChange_1 = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setTravel_image_1(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFileChange_2 = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setTravel_image_2(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFileChange_3 = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setTravel_image_3(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleChang = (e: any) => {
     setForm({
@@ -17,16 +56,18 @@ export default function AddTravel({}: Props) {
 
 
   const handleSubmit = async () => {
-    console.log(form);
+
+    const dataForm = Object.assign({}, form, { travel_image_1: travel_image_1 }, { travel_image_2: travel_image_2 }, { travel_image_3: travel_image_3 })
+    console.log(dataForm['travel_image_1']);
     console.log(Object.keys(form).length);
-    if (Object.keys(form).length < 15) {
+    if (Object.keys(form).length < 14) {
       return alert("กรุณากรอกให้ครบ!!");
     } else {
       const res = await fetch("/api/travel", {
         method: "POST",
-        body: JSON.stringify(form),
+        body: JSON.stringify(dataForm),
       });
-      if(res.ok){
+      if (res.ok) {
         const resp = await res.json()
         return alert(resp['massage'])
       }
@@ -267,7 +308,7 @@ export default function AddTravel({}: Props) {
           </div>
           <div className="w-full h-fit mb-3 flex justify-between items-center">
             <input
-              onChange={handleChang}
+              onChange={handleFileChange_1}
               required
               name="travel_image_1"
               type="file"
@@ -282,7 +323,8 @@ export default function AddTravel({}: Props) {
           </div>
           <div className="w-full h-fit mb-3 flex justify-between items-center">
             <input
-              onChange={handleChang}
+              onChange={handleFileChange_2}
+
               required
               name="travel_image_2"
               type="file"
@@ -297,7 +339,8 @@ export default function AddTravel({}: Props) {
           </div>
           <div className="w-full h-fit mb-3 flex justify-between items-center">
             <input
-              onChange={handleChang}
+              onChange={handleFileChange_3}
+
               required
               name="travel_image_3"
               type="file"
@@ -320,6 +363,7 @@ export default function AddTravel({}: Props) {
             <button
               className="w-[32%] bg-red-500 h-[3rem] p-2 rounded-lg outline-none active:scale-90 transition-all ease-in-out text-white hover:bg-red-600"
               type="reset"
+              onClick={() => setForm({})}
             >
               รีเซ็ต
             </button>
@@ -336,6 +380,7 @@ export default function AddTravel({}: Props) {
           </div>
         </form>
       </div>
+      {/* <Image height={100} width={100} alt="" src={`${travel_image_1}`}/> */}
     </div>
   );
 }
