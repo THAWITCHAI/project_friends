@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../_components/Navbar_2";
 import travelModule from "../lib/globalApi";
 import Link from "next/link";
-import Image from "next/image";
 import Sidebar from "../_components/Sidebar";
+import Image from "next/image";
 
 type Props = {};
 
@@ -34,7 +34,7 @@ interface TravelDetail {
   travel_call: string;
 }
 
-export default function AllTravels({}: Props) {
+export default function AllTravels({ }: Props) {
   const [travels, setTravels] = useState<TravelDetail[]>([]);
   const [search, setSearch] = useState("");
 
@@ -77,7 +77,7 @@ export default function AllTravels({}: Props) {
                   <Link key={index} href={"/all-travels/" + item.travel_id}>
                     <div className="shadow-lg h-[15rem] rounded-md transition-all ease-in-out hover:scale-110 overflow-hidden">
                       <Image
-                        src={"/back.jpg"}
+                        src={item.travel_image_1}
                         width={200}
                         height={200}
                         alt=""
@@ -106,7 +106,7 @@ export default function AllTravels({}: Props) {
                   <Link key={index} href={"/all-travels/" + item.travel_id}>
                     <div className="shadow-lg h-[15rem] rounded-md transition-all ease-in-out hover:scale-110 overflow-hidden">
                       <Image
-                        src={"/back.jpg"}
+                        src={item.travel_image_1}
                         width={200}
                         height={200}
                         alt=""

@@ -72,7 +72,7 @@ export default function TravelDetail({ params }: Props) {
                     <CarouselContent>
                       <CarouselItem>
                         <Image
-                          src={`/2.webp`}
+                          src={item.travel_image_1}
                           width={500}
                           height={500}
                           alt=""

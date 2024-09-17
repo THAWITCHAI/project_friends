@@ -15,7 +15,7 @@ interface TravelData {
 
 type Props = {};
 
-export default function AllUser({}: Props) {
+export default function AllUser({ }: Props) {
   const [search, setSearch] = useState("");
   const [data_demo, setData_demo] = useState<TravelData[]>([]);
 
@@ -45,7 +45,7 @@ export default function AllUser({}: Props) {
   });
 
   if (data_demo.length == 0) {
-    return(
+    return (
       <div className="w-full h-full text-5xl flex justify-center items-center">ไม่มีข้อมูล</div>
     )
   } else {
@@ -118,7 +118,7 @@ export default function AllUser({}: Props) {
                           </Link>
                         </button>
                         <button className="hover:bg-green-500 border-none active:scale-90 transition-all ease-in-out outline-none w-[5rem] h-[2.5rem] ml-2 bg-green-400 text-white rounded-lg text-sm">
-                          <Link href={""} className="w-full h-full">
+                          <Link href={`/admin/show/Travels/edit/${item.travel_id}`} className="w-full h-full">
                             แก้ไข
                           </Link>
                         </button>
@@ -148,14 +148,14 @@ export default function AllUser({}: Props) {
                       <td className="px-6 py-4">
                         <button className="hover:bg-blue-500 w-[5rem] h-[2.5rem] bg-blue-400 text-white rounded-lg text-sm border-none active:scale-90 transition-all ease-in-out">
                           <Link
-                            href={`/admin/allTravels/${item.travel_id}`}
+                            href={`/admin/show/Travels/${item.travel_id}`}
                             className="w-full h-full"
                           >
-                            ดูเพิ่มเติม
+                            ดูเพิ่ม
                           </Link>
                         </button>
                         <button className="hover:bg-green-500 border-none active:scale-90 transition-all ease-in-out outline-none w-[5rem] h-[2.5rem] ml-2 bg-green-400 text-white rounded-lg text-sm">
-                          <Link href={""} className="w-full h-full">
+                          <Link href={`/admin/show/Travels/edit/${item.travel_id}`} className="w-full h-full">
                             แก้ไข
                           </Link>
                         </button>

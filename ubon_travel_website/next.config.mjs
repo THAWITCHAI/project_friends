@@ -1,15 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        remotePatterns: [
-            {
-                protocol: 'http',
-                hostname: '',
-                port: '',
-                pathname: '/images/'
-            }
-        ]
-    }
-};
-
-export default nextConfig;
+      // If you want to add external image domains later, you can add remotePatterns here
+    },
+  };
+  
+  export default nextConfig;
+  

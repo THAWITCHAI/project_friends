@@ -12,3 +12,15 @@ export async function POST(req: any) {
   await promisePool.query("INSERT INTO travels set ?", [data]);
   return NextResponse.json({ massage: "Add Successfully" }, { status: 200 });
 }
+export async function PUT(req: any) {
+  const data = await req.json();
+  const promisePool = mysqlPool.promise();
+  await promisePool.query("UPDATE travels set ? WHERE travel_id = ?", [data, data['travel_id']]);
+  return NextResponse.json({ massage: "Update Successfully" }, { status: 200 });
+}
+export async function DELETE(req: any) {
+  const data = await req.json();
+  const promisePool = mysqlPool.promise();
+  await promisePool.query("DELETE FROM `travels` WHERE travel_id = ?", [data['travel_id']]);
+  return NextResponse.json({ massage: "DELETE Successfully" }, { status: 200 });
+}
