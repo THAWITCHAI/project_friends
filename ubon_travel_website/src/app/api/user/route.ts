@@ -5,15 +5,15 @@ export async function POST(req: any) {
   const user = [
     {
       id: 1,
-      name: "Thawitchai Boonsong",
-      email: "thawitchai@gmail.com",
+      name: "Phongsathon Namsean",
+      email: "admin@gmail.com",
       password: "13495000",
       role: 1,
     },
     {
       id: 2,
-      name: "Phacharaporn Phahyad",
-      email: "pam@gmail.com",
+      name: "นาย ใจดี เกินเหตุ",
+      email: "user@gmail.com",
       password: "1234",
       role: 2,
     },

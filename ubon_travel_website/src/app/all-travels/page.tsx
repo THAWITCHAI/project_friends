@@ -64,7 +64,7 @@ export default function AllTravels({ }: Props) {
           placeholder="ค้นหา ชื่อ อำเภอ ตำบล หรือ ประเภท สถานที่ ที่คุณอยากจะไป"
         />
       </div>
-      <div className="px-5 w-full h-[25rem] flex items-center justify-center border">
+      <div className="px-5 w-full h-[25rem] flex items-center justify-center ">
         <Sidebar />
         <div className="w-[85%] h-full overflow-y-scroll scrollbar-hide p-10">
           <div className="text-start text-2xl px-10">

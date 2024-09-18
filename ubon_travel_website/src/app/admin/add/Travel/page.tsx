@@ -380,7 +380,6 @@ export default function AddTravel({ }: Props) {
           </div>
         </form>
       </div>
-      {/* <Image height={100} width={100} alt="" src={`${travel_image_1}`}/> */}
     </div>
   );
 }
