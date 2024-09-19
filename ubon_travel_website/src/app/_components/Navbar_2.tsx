@@ -15,7 +15,7 @@ import {
 
 type Props = {};
 
-export default function Navbar({}: Props) {
+export default function Navbar({ }: Props) {
   const { data: session, status } = useSession();
   const router = useRouter();
   return (
@@ -33,13 +33,18 @@ export default function Navbar({}: Props) {
             }}
           />
         </div>
+        <div className=" h-full w-[30rem] flex justify-between items-center">
+          <div className="cursor-pointer hover:ring-1 hover:ring-white rounded-md transition-all ease-in-out h-[70%] w-[9rem] flex justify-center items-center text-white"> <Link className="w-full h-full flex justify-center items-center" href={'/all-travels'}>สถานที่ท่องเที่ยว</Link> </div>
+          <div className="cursor-pointer hover:ring-1 hover:ring-white rounded-md transition-all ease-in-out h-[70%] w-[9rem] flex justify-center items-center text-white"> <Link className="w-full h-full flex justify-center items-center" href={''}>ที่พัก</Link> </div>
+          <div className="cursor-pointer hover:ring-1 hover:ring-white rounded-md transition-all ease-in-out h-[70%] w-[9rem] flex justify-center items-center text-white"> <Link className="w-full h-full flex justify-center items-center" href={''}>ค่าเฟ่</Link> </div>
+        </div>
         <div className="w-[20rem] h-full flex justify-end items-center">
           {status == "unauthenticated" && (
             <Link
               href={"/authen/login"}
               className=" w-fit h-fit active:scale-90 transition-all ease-in-outrounded-lg"
             >
-              <Image src={'/profile_1.png'} width={30} height={30} alt=""/>
+              <Image src={'/profile_1.png'} width={30} height={30} alt="" />
             </Link>
           )}
           {status === "authenticated" && (

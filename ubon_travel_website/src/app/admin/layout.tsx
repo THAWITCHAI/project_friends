@@ -48,10 +48,10 @@ export default function RootLayout({
                   <span className="text-base font-thin">สถานที่ท่องเที่ยว</span>
                 </button>
               </Link>
-              <Link href={""}>
+              <Link href={"/admin/add/Restaurant"}>
                 <button className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none">
                   <Image src={"/add.png"} width={20} height={20} alt="" />
-                  <span className="text-base font-thin">ร้านอาหาร</span>
+                  <span className="text-base font-thin">ค่าเฟ่</span>
                 </button>
               </Link>
               <Link href={""}>
@@ -91,7 +91,7 @@ export default function RootLayout({
               <Link href={""}>
                 <button className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none">
                   <Image src={"/database.png"} width={20} height={20} alt="" />
-                  <span className="text-base font-thin">ร้านอาหาร</span>
+                  <span className="text-base font-thin">ค่าเฟ่</span>
                 </button>
               </Link>
               <Link href={""}>
