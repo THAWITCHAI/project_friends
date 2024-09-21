@@ -99,7 +99,7 @@ export default function AllTravels({ params }: Props) {
                           height={15}
                           className="mx-2"
                         />{" "}
-                        {item.travel_province}
+                        {item.travel_district}
                       </p>
                     </div>
                   </Link>
@@ -128,7 +128,7 @@ export default function AllTravels({ params }: Props) {
                           height={15}
                           className="mx-2"
                         />{" "}
-                        {item.travel_province}
+                        {item.travel_district}
                       </p>
                     </div>
                   </Link>

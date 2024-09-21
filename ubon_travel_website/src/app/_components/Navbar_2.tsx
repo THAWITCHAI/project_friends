@@ -36,7 +36,7 @@ export default function Navbar({ }: Props) {
         <div className=" h-full w-[30rem] flex justify-between items-center">
           <div className="cursor-pointer hover:ring-1 hover:ring-white rounded-md transition-all ease-in-out h-[70%] w-[9rem] flex justify-center items-center text-white"> <Link className="w-full h-full flex justify-center items-center" href={'/all-travels'}>สถานที่ท่องเที่ยว</Link> </div>
           <div className="cursor-pointer hover:ring-1 hover:ring-white rounded-md transition-all ease-in-out h-[70%] w-[9rem] flex justify-center items-center text-white"> <Link className="w-full h-full flex justify-center items-center" href={''}>ที่พัก</Link> </div>
-          <div className="cursor-pointer hover:ring-1 hover:ring-white rounded-md transition-all ease-in-out h-[70%] w-[9rem] flex justify-center items-center text-white"> <Link className="w-full h-full flex justify-center items-center" href={''}>ค่าเฟ่</Link> </div>
+          <div className="cursor-pointer hover:ring-1 hover:ring-white rounded-md transition-all ease-in-out h-[70%] w-[9rem] flex justify-center items-center text-white"> <Link className="w-full h-full flex justify-center items-center" href={'/all_cafe'}>ค่าเฟ่</Link> </div>
         </div>
         <div className="w-[20rem] h-full flex justify-end items-center">
           {status == "unauthenticated" && (
