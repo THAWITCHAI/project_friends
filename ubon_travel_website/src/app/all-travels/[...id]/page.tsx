@@ -79,10 +79,10 @@ export default function TravelDetail({ params }: Props) {
                           className="rounded-lg"
                         />
                       </CarouselItem>
-                      {item.travel_image_2 !== null && (
+                      {item.travel_image_2 !== '-' && (
                         <CarouselItem>
                           <Image
-                            src={`/2.webp`}
+                            src={item.travel_image_2}
                             width={500}
                             height={500}
                             alt=""
@@ -90,10 +90,10 @@ export default function TravelDetail({ params }: Props) {
                           />
                         </CarouselItem>
                       )}
-                      {item.travel_image_3 !== null && (
+                      {item.travel_image_3 !== '-' && (
                         <CarouselItem>
                           <Image
-                            src={`/2.webp`}
+                            src={item.travel_image_3}
                             width={500}
                             height={500}
                             alt=""

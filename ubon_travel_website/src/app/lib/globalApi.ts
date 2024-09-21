@@ -21,9 +21,19 @@ const getTravels = async () => {
   return;
 };
 
+const getCafe = async () => {
+  const res = await fetch("/api/restaurant");
+  if (res.ok) {
+    const resp = await res.json();
+    return resp;
+  }
+  return;
+};
+
 const travelModule = {
   getTypeTravels,
   getTravels,
+  getCafe,
 };
 
 export default travelModule;

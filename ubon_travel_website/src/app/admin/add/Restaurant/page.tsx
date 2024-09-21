@@ -1,277 +1,122 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
+import Image from "next/image";
+import { ChangeEvent, useState } from "react";
+
 type Props = {};
 
 export default function AddRestaurant({ }: Props) {
+    const [form, setForm] = useState({})
+    const [r_image_1, setR_image_1] = useState<String | null>('-');
+    const [r_image_2, setR_image_2] = useState<String | null>('-');
+    const [r_image_3, setR_image_3] = useState<String | null>('-');
+
+    const handChanged = (e: any) => {
+        setForm(
+            {
+                ...form,
+                [e.target.name]: e.target.value,
+            }
+        )
+        return
+    }
+
+    const handleSubmit = async (e: any) => {
+        if (Object.keys(form).length === 0) {
+            return alert('กรุณากรอกให้ครบข้อมูลใส่ถูกต้อง');
+        } else {
+            if (r_image_1 == '-') {
+                return alert('ต้องการใส่รูปภาพ')
+            } else {
+                e.preventDefault()
+                const dataForm = Object.assign({}, form, { r_image_1: r_image_1 }, { r_image_2: r_image_2 }, { r_image_3: r_image_3 })
+                const res = await fetch(`/api/restaurant`, {
+                    method: 'POST',
+                    body: JSON.stringify(dataForm)
+                })
+                const response = await res.json()
+                alert(String(response['massage']))
+            }
+        }
+        return
+    }
+
+    const handleFileChange_1 = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setR_image_1(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleFileChange_2 = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setR_image_2(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleFileChange_3 = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setR_image_3(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
-        <div className="w-full h-fit overflow-x-scroll">
-            <h1 className="border-b h-[3rem] w-1/2 flex justify-start items-center p-2 text-xl font-light">
+        <div className="w-full h-full">
+            <h1 className="border-b h-[8.5%] w-1/2 flex justify-start items-center p-2 text-xl font-light">
                 ค่าเฟ่
             </h1>
-            <div className="w-full h-fit mt-5 flex justify-center items-center">
-                <form className="shadow-2xl w-[60%] h-fit p-10 rounded-xl ml-20 mr-20 mb-10">
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ชื่อ</li>
+            <div className="w-full h-fit my-[1rem] flex  justify-center items-center">
+                <form className="h-fit w-[60%] shadow-2xl my-2 rounded-lg p-10" >
+                    <li className="w-full h-fit my-2">ชื่อ</li>
+                    <input onChange={handChanged} name="r_name" type="text" className="w-full h-[3rem] my-2 border rounded-lg outline-none px-2" placeholder="ชื่อคาเฟ่" />
+                    <li className="w-full h-fit my-2">ที่อยู่</li>
+                    <div className="py-2 w-full h-fit flex justify-between items-center">
+                        <input onChange={handChanged} name="r_alley" type="text" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="ซอย" />
+                        <input onChange={handChanged} name="r_road" type="text" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="ถนน" />
                     </div>
-                    <input
-                        required
-                        name="travel_name"
-                        type="text"
-                        className="mb-3 w-full border h-[3rem] p-2 rounded-lg outline-none"
-                        placeholder="กรอกชื่อสถานที่ท่องเที่ยว"
-                    />
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ที่อยู่</li>
+                    <div className="py-2 w-full h-fit flex justify-between items-center">
+                        <input onChange={handChanged} name="r_subdistrict" type="text" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="ตำบล" />
+                        <input onChange={handChanged} name="r_district" type="text" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="อำเภอ" />
                     </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-                            required
-                            name="travel_road"
-                            type="text"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="ถนน"
-                        />
-                        <input
-                            required
-                            name="travel_alley"
-                            type="text"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="ซอย"
-                        />
+                    <div className="py-2 w-full h-fit flex justify-between items-center">
+                        <input onChange={handChanged} name="r_province" type="text" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="จังหวัด" />
+                        <input onChange={handChanged} name="r_zip_code" type="text" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="รหัสไปรษณีย์" />
                     </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-                            required
-                            name="travel_province"
-                            type="text"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="จังหวัด"
-                        />
-                        <input
-                            required
-                            name="travel_district"
-                            type="text"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="อำเภอ"
-                        />
+                    <div className="py-2 w-full h-fit flex justify-between items-center">
+                        <input onChange={handChanged} name="r_url" type="text" className="w-full h-[3rem] border outline-none rounded-lg px-2" placeholder="URL แผนที่" />
                     </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-                            required
-                            name="travel_subdistrict"
-                            type="text"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="ตำบล"
-                        />
-                        <input
-                            required
-                            name="travel_post"
-                            type="text"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="รหัสไปรษณีย์"
-                        />
+                    <li className="w-full h-fit my-2">เวลาทำการ</li>
+                    <div className="py-2 w-full h-fit flex justify-between items-center">
+                        <input onChange={handChanged} name="r_open" type="time" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="เปิด" />
+                        <input onChange={handChanged} name="r_closs" type="time" className="w-[49%] h-[3rem] border outline-none rounded-lg px-2" placeholder="ปิด" />
                     </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ค่าธรรมเนียมเข้าชม</li>
+                    <li className="w-full h-fit my-2">คำแนะนำเชิญชวน</li>
+                    <textarea onChange={handChanged} name="r_advice" className="w-full h-[10rem] border outline-none rounded-lg p-2" placeholder="คำแนะนำเชิญชวน"></textarea>
+                    <li className="w-full h-fit my-2">รูปภาพ</li>
+                    <div className="py-2 w-full h-fit flex justify-between items-center">
+                        <Input onChange={handleFileChange_1} name="r_image_1" type="file" className="w-[33%] border outline-none flex justify-center items-center" />
+                        <Input onChange={handleFileChange_2} name="r_image_2" type="file" className="w-[33%] border outline-none flex justify-center items-center" />
+                        <Input onChange={handleFileChange_3} name="r_image_3" type="file" className="w-[33%] border outline-none flex justify-center items-center" />
                     </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-                            required
-                            name="travel_adult_fee"
-                            type="number"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="ผู้ใหญ่"
-                        />
-
-                        <input
-                            required
-                            name="travel_child_fee"
-                            type="number"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="เด็ก"
-                        />
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ข้อมูลติดต่อ</li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-                            required
-                            name="travel_call"
-                            type="number"
-                            className="w-[100%] border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="เบอร์"
-                        />
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">เวลาทำการ</li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-                            required
-                            name="travel_business_hours_s"
-                            type="time"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                        />
-                        <input
-                            required
-                            name="travel_business_hours_e"
-                            type="time"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                        />
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ตำแหน่ง</li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-                            required
-                            name="travel_url"
-                            type="url"
-                            className="w-full border h-[3rem] p-2 rounded-lg outline-none"
-                            placeholder="URL"
-                        />
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ประเภทสถานที่</li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center ">
-                        <select
-                            className="w-1/2 border h-[3rem] p-2 rounded-lg outline-none"
-                            name="type_travel_id"
-                        >
-                            <option
-                                className="outline-none"
-                                value={1}
-                            >
-                                คาเฟ่
-                            </option>
-                        </select>
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ข้อมูลทั่วไป</li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <textarea
-                            name="travel_background"
-                            className="w-full border h-[20rem] p-2 rounded-lg outline-none overflow-x-scroll"
-                            placeholder="ความเป็นมาหรือแนะนำ"
-                        ></textarea>
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">เครื่องอำนวยความสะดวก</li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <div className="w-[18%] h-10 pl-5 flex justify-between items-center">
-                            <input
-                                required
-                                type="checkbox"
-                                name="travel_facilies_1"
-                                value={"ที่จอด"}
-                            />{" "}
-                            <label htmlFor="">ที่จอดรถ</label>
-                        </div>
-                        <div className="w-[18%] h-10 pl-5 flex justify-between items-center">
-                            <input
-                                required
-                                type="checkbox"
-                                name="travel_facilies_2"
-                                value={"ร้านค้า"}
-                            />{" "}
-                            <label htmlFor="">ร้านค้า</label>
-                        </div>
-                        <div className="w-[18%] h-10 pl-5 flex justify-between items-center">
-                            <input
-                                required
-                                type="checkbox"
-                                name="travel_facilies_3"
-                                value={"ห้องน้ำ"}
-                            />{" "}
-                            <label htmlFor="">ห้องน้ำ</label>
-                        </div>
-                        <div className="w-[24%] h-10 pl-5 flex justify-between items-center">
-                            <input
-                                required
-                                type="checkbox"
-                                name="travel_facilies_4"
-                                value={"รถสาธารณะ"}
-                            />{" "}
-                            <label htmlFor="">รถสาธารณะ</label>
-                        </div>
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">
-                            รูปสถานที่ท่องเที่ยว 1{" "}
-                            <span className="text-blue-500"> ( ต้องมี )</span>
-                        </li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-
-                            required
-                            name="travel_image_1"
-                            type="file"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                        />
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">
-                            รูปสถานที่ท่องเที่ยว 2{" "}
-                            <span className="text-red-500"> ( ถ้ามี )</span>
-                        </li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-
-                            required
-                            name="travel_image_2"
-                            type="file"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                        />
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">
-                            รูปสถานที่ท่องเที่ยว 3{" "}
-                            <span className="text-red-500"> ( ถ้ามี )</span>
-                        </li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <input
-
-                            required
-                            name="travel_image_3"
-                            type="file"
-                            className="w-[49%] border h-[3rem] p-2 rounded-lg outline-none"
-                        />
-                    </div>
-                    <div className="w-full h-fit flex justify-start items-center">
-                        <li className="w-full h-[2rem] ">ยืนยันการเพิ่ม</li>
-                    </div>
-                    <div className="w-full h-fit mb-3 flex justify-between items-center">
-                        <button
-                            className="w-[32%] bg-green-500 text-white hover:bg-green-600 h-[3rem] p-2 rounded-lg outline-none active:scale-90 transition-all ease-in-out"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                return history.back();
-                            }}
-                        >
-                            กลับ
-                        </button>
-                        <button
-                            className="w-[32%] bg-red-500 h-[3rem] p-2 rounded-lg outline-none active:scale-90 transition-all ease-in-out text-white hover:bg-red-600"
-                            type="reset"
-                        >
-                            รีเซ็ต
-                        </button>
-                        <button
-                            className="hover:bg-blue-600 w-[32%] bg-blue-500 text-white h-[3rem] p-2 rounded-lg outline-none active:scale-90 transition-all ease-in-out"
-                            type="submit"
-                            onClick={(e) => {
-                                e.preventDefault();
-                            }}
-                        >
-                            ยืนยันการเพิ่ม
-                        </button>
+                    <div className="w-full h-[5rem] flex items-center justify-around">
+                        <button className="w-[33%] h-1/2 bg-blue-500 rounded-md text-white" onClick={() => history.back()}>กลับ</button>
+                        <button className="w-[33%] h-1/2 bg-red-500 rounded-md text-white" type="reset" onClick={() => setForm({})}>รีเซ็ต</button>
+                        <button className="w-[33%] h-1/2 bg-green-500 rounded-md text-white" type="submit" onClick={handleSubmit}>ยืนยัน</button>
                     </div>
                 </form>
             </div>

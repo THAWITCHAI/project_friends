@@ -82,7 +82,7 @@ export default function AllTravels({ params }: Props) {
                   <Link key={index} href={"/all-travels/" + item.travel_id}>
                     <div className="shadow-lg h-[15rem] rounded-md transition-all ease-in-out hover:scale-110 overflow-hidden">
                       <Image
-                        src={"/back.jpg"}
+                        src={item.travel_image_1}
                         width={200}
                         height={200}
                         alt=""

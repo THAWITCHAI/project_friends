@@ -289,15 +289,15 @@ export default function AddTravel({ }: Props) {
               />{" "}
               <label htmlFor="">ห้องน้ำ</label>
             </div>
-            <div className="w-[24%] h-10 pl-5 flex justify-between items-center">
+            <div className="w-[15%] h-10 pl-5 flex justify-between items-center">
               <input
                 required
                 onChange={handleChang}
                 type="checkbox"
                 name="travel_facilies_4"
-                value={"รถสาธารณะ"}
+                value={"อื่นๆ"}
               />{" "}
-              <label htmlFor="">รถสาธารณะ</label>
+              <label htmlFor="">อื่นๆ</label>
             </div>
           </div>
           <div className="w-full h-fit flex justify-start items-center">

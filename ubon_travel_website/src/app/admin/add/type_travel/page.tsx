@@ -40,8 +40,8 @@ export default function Type_Travel({}: Props) {
               onChange={(e) => setName(e.target.value)}
             />
             <h1 className="p-2 mt-5">เลือกประเภทที่จะเพิ่ม</h1>
-            <div className="w-full h-[2rem] p-2 flex justify-between items-center">
-              <div className="w-[20%] p-2 flex justify-between items-center">
+            <div className="w-1/2 h-[2rem] p-2 flex justify-between items-center">
+              <div className="w-[40%] p-2 flex justify-between items-center">
                 <input
                   type="radio"
                   name="category"
@@ -51,21 +51,11 @@ export default function Type_Travel({}: Props) {
                 />{" "}
                 <span>สถานที่</span>
               </div>
-              <div className="w-[20%] p-2 flex justify-between items-center">
+              <div className="w-[40%] p-2 flex justify-between items-center">
                 <input
                   type="radio"
                   name="category"
                   value={2}
-                  onChange={handleRadioChange}
-                  className="outline-none"
-                />{" "}
-                <span>ร้านอาหาร</span>
-              </div>
-              <div className="w-[20%] p-2 flex justify-between items-center">
-                <input
-                  type="radio"
-                  name="category"
-                  value={3}
                   onChange={handleRadioChange}
                   className="outline-none"
                 />{" "}
