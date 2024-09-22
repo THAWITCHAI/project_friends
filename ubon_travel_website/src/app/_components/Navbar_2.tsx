@@ -19,7 +19,7 @@ export default function Navbar({ }: Props) {
   const { data: session, status } = useSession();
   const router = useRouter();
   return (
-    <div className="w-full h-fit shadow-md bg-blue-500 sticky top-0">
+    <div className="w-full h-fit shadow-md bg-blue-500 sticky top-0 z-[1]">
       <div className="h-[4rem] w-full flex justify-between items-center pl-5 pr-5">
         <div className="w-[20rem]">
           <Image
