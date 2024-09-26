@@ -105,7 +105,7 @@ export default function ShowCafe({ }: Props) {
                       <td className="px-6 py-4">
                         <button className="hover:bg-blue-500 w-[5rem] h-[2.5rem] bg-blue-400 text-white rounded-lg text-sm border-none active:scale-90 transition-all ease-in-out">
                           <Link
-                            href={``}
+                            href={`/admin/show/cafe/${item.r_id}`}
                             className="w-full h-full"
                           >
                             ดูเพิ่มเติม
@@ -142,7 +142,7 @@ export default function ShowCafe({ }: Props) {
                       <td className="px-6 py-4">
                         <button className="hover:bg-blue-500 w-[5rem] h-[2.5rem] bg-blue-400 text-white rounded-lg text-sm border-none active:scale-90 transition-all ease-in-out">
                           <Link
-                            href={``}
+                            href={`/admin/show/cafe/${item.r_id}`}
                             className="w-full h-full"
                           >
                             ดูเพิ่มเติม
