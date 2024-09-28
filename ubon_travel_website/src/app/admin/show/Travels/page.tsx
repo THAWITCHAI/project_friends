@@ -59,10 +59,10 @@ export default function AllUser({ }: Props) {
             placeholder="Search"
           />
         </div>
-        <div className="w-full h-[29rem] overflow-y-scroll scrollbar-hide">
-          <div className="relative">
+        <div className="w-full h-[29rem] overflow-y-scroll scrollbar-hide ">
+          <div className="relative w-full">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0 w-full">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     ลำดับ
@@ -87,7 +87,7 @@ export default function AllUser({ }: Props) {
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="w-full">
                 {search === "" &&
                   data_demo.map((item, index) => (
                     <tr
@@ -108,7 +108,7 @@ export default function AllUser({ }: Props) {
                         {item.travel_business_hours_e}
                       </td>
                       <td className="px-6 py-4">{item.type_travel_name}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 grid grid-cols-2 gap-2">
                         <button className="hover:bg-blue-500 w-[5rem] h-[2.5rem] bg-blue-400 text-white rounded-lg text-sm border-none active:scale-90 transition-all ease-in-out">
                           <Link
                             href={`/admin/show/Travels/${item.travel_id}`}
