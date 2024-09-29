@@ -5,20 +5,18 @@ import React, { useEffect, useState } from 'react'
 
 type Props = {}
 interface Cafe {
-  r_id: number,
-  r_name: string,
-  r_alley: string,
-  r_road: string,
-  r_subdistrict: string,
-  r_district: string,
-  r_province: string,
-  r_zip_code: string,
-  r_open: string,
-  r_closs: string,
-  r_image_1: string
-  r_image_2: string
-  r_image_3: string
-  r_advice: string
+  id: number,
+  name: string,
+  alley: string,
+  road: string,
+  subdistrict: string,
+  district: string,
+  province: string,
+  zip_code: string,
+  image_1: string
+  image_2: string
+  image_3: string
+  create: string
 }
 
 export default function House({ }: Props) {
@@ -26,17 +24,15 @@ export default function House({ }: Props) {
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    travelModule.getCafe().then(res => setData(res));
+    travelModule.getHouse().then(res => setData(res));
   }, []);
 
   const searchData = data.filter((item) => {
     return (
-      (item.r_name && item.r_name.includes(search.toUpperCase())) ||
-      (item.r_province && item.r_province.includes(search.toUpperCase())) ||
-      (item.r_district && item.r_district.includes(search.toUpperCase())) ||
-      (item.r_subdistrict && item.r_subdistrict.includes(search.toUpperCase())) ||
-      (item.r_open && item.r_open.includes(search.toUpperCase())) ||
-      (item.r_closs && item.r_closs.includes(search.toUpperCase()))
+      (item.name && item.name.includes(search.toUpperCase())) ||
+      (item.province && item.province.includes(search.toUpperCase())) ||
+      (item.district && item.district.includes(search.toUpperCase())) ||
+      (item.subdistrict && item.subdistrict.includes(search.toUpperCase()))
     )
   })
   if (data.length == 0) {
@@ -76,7 +72,7 @@ export default function House({ }: Props) {
                   ตำบล
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  เวลา เปิด - ปิด
+                  เวลาสร้าง
                 </th>
                 <th scope="col" className="px-6 py-3">
                   ตอบสนอง
@@ -97,22 +93,22 @@ export default function House({ }: Props) {
                       >
                         {index + 1}
                       </th>
-                      <td className="px-6 py-4">{item.r_name}</td>
-                      <td className="px-6 py-4">{item.r_province}</td>
-                      <td className="px-6 py-4">{item.r_district}</td>
-                      <td className="px-6 py-4">{item.r_subdistrict}</td>
-                      <td className="px-6 py-4">{item.r_open} - {item.r_closs}</td>
+                      <td className="px-6 py-4">{item.name}</td>
+                      <td className="px-6 py-4">{item.province}</td>
+                      <td className="px-6 py-4">{item.district}</td>
+                      <td className="px-6 py-4">{item.subdistrict}</td>
+                      <td className="px-6 py-4">{item.create}</td>
                       <td className="px-6 py-4">
                         <button className="hover:bg-blue-500 w-[5rem] h-[2.5rem] bg-blue-400 text-white rounded-lg text-sm border-none active:scale-90 transition-all ease-in-out">
                           <Link
-                            href={`/admin/show/cafe/${item.r_id}`}
+                            href={`/admin/show/House/${item.id}`}
                             className="w-full h-full"
                           >
                             ดูเพิ่มเติม
                           </Link>
                         </button>
                         <button className="hover:bg-green-500 border-none active:scale-90 transition-all ease-in-out outline-none w-[5rem] h-[2.5rem] ml-2 bg-green-400 text-white rounded-lg text-sm">
-                          <Link href={``} className="w-full h-full">
+                          <Link href={`/admin/show/House/edit/${item.id}`} className="w-full h-full">
                             แก้ไข
                           </Link>
                         </button>
@@ -134,15 +130,15 @@ export default function House({ }: Props) {
                       >
                         {index + 1}
                       </th>
-                      <td className="px-6 py-4">{item.r_name}</td>
-                      <td className="px-6 py-4">{item.r_province}</td>
-                      <td className="px-6 py-4">{item.r_district}</td>
-                      <td className="px-6 py-4">{item.r_subdistrict}</td>
-                      <td className="px-6 py-4">{item.r_open} - {item.r_closs}</td>
+                      <td className="px-6 py-4">{item.name}</td>
+                      <td className="px-6 py-4">{item.province}</td>
+                      <td className="px-6 py-4">{item.district}</td>
+                      <td className="px-6 py-4">{item.subdistrict}</td>
+                      <td className="px-6 py-4">{item.create}</td>
                       <td className="px-6 py-4">
                         <button className="hover:bg-blue-500 w-[5rem] h-[2.5rem] bg-blue-400 text-white rounded-lg text-sm border-none active:scale-90 transition-all ease-in-out">
                           <Link
-                            href={`/admin/show/cafe/${item.r_id}`}
+                            href={`/admin/show/House/${item.id}`}
                             className="w-full h-full"
                           >
                             ดูเพิ่มเติม

@@ -51,7 +51,7 @@ export default function Type_Travel({}: Props) {
                 />{" "}
                 <span>สถานที่</span>
               </div>
-              <div className="w-[40%] p-2 flex justify-between items-center">
+              {/* <div className="w-[40%] p-2 flex justify-between items-center">
                 <input
                   type="radio"
                   name="category"
@@ -60,7 +60,7 @@ export default function Type_Travel({}: Props) {
                   className="outline-none"
                 />{" "}
                 <span>ที่พัก</span>
-              </div>
+              </div> */}
             </div>
             <button
               className="bg-blue-500 w-full mt-5 h-[3.5rem] rounded-lg text-white"

@@ -48,7 +48,7 @@ export default function DetailCafe({ params }: Props) {
             {dataCafeDetails.map((item, index) => {
                 return (
                     <div className='w-full h-fit' key={index}>
-                        <h1 className='w-full h-fit text-3xl px-10 my-10'>{item.r_name}</h1>
+                        <h1 className='w-full h-fit text-3xl px-10 my-10 text-center'>{item.r_name}</h1>
                         <div className='w-full h-[70%] p-10 my-5 flex justify-center items-center'>
                             <div className='w-[35%] h-[20rem] flex justify-center items-center'>
                                 <Carousel>
@@ -91,7 +91,7 @@ export default function DetailCafe({ params }: Props) {
 
                             </div>
                         </div>
-                        <h1 className='text-start px-10 text-3xl'>ที่อยู่</h1>
+                        <h1 className='px-10 text-3xl w-full text-center'>ที่อยู่</h1>
                         <div className='w-full h-[20rem] my-10 p-10 grid grid-cols-3 gap-4'>
                             <div className=' flex flex-col justify-center items-center'>
                                 <h1 className='my-2'>ซอย {item.r_alley}</h1>
@@ -101,7 +101,7 @@ export default function DetailCafe({ params }: Props) {
                             </div>
                             <div className=' flex flex-col justify-center items-center'>
                                 <h1 className='my-2'>จังหวัด {item.r_subdistrict}</h1>
-                                <h1 className='my-2'>รหัสไปษณีย์ {item.r_district}</h1>
+                                <h1 className='my-2'>รหัสไปษณีย์ {item.r_zip_code}</h1>
                                 <h1 className='my-2'>เวลาเปิด {item.r_open}</h1>
                                 <h1 className='my-2'>เวลาปิด {item.r_closs}</h1>
                             </div>
