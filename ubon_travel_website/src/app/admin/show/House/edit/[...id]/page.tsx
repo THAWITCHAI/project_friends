@@ -2,6 +2,7 @@
 import travelModule from '@/app/lib/globalApi'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 type Props = any
@@ -26,6 +27,7 @@ interface Edit {
 }
 
 export default function Edit_House({ params }: Props) {
+    const router = useRouter()
     const { id } = params
     const [data, setData] = useState<Edit[]>([])
 
@@ -36,7 +38,7 @@ export default function Edit_House({ params }: Props) {
     const filterData = data.filter((item) => item.id == String(id))
 
 
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({ id: id[0] })
     const [house_image_1, setHouse_image_1] = useState<String | null>(null)
     const [house_image_2, setHouse_image_2] = useState<String | null>(null)
     const [house_image_3, setHouse_image_3] = useState<String | null>(null)
@@ -81,22 +83,28 @@ export default function Edit_House({ params }: Props) {
     };
 
     const handleSubmit = async () => {
-        // if (Object.keys(form).length == 0 || house_image_1 == null) {
-        //     return alert('กรุณากรอกให้ครบข้อมูลใส่ถูกต้อง')
-        // }
-        // const data = Object.assign({}, form, { image_1: house_image_1, image_2: house_image_2, image_3: house_image_3 })
-        // const res = await fetch('/api/house', {
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
+        const data = Object.assign(
+            {},
+            form,
+            {
+                image_1: house_image_1 == null || house_image_1 == '' ? filterData[0].image_1 : house_image_1,
+                image_2: house_image_2 == null || house_image_2 == '' ? filterData[0].image_2 : house_image_2,
+                image_3: house_image_3 == null || house_image_3 == '' ? filterData[0].image_3 : house_image_3
+            }
+        )
+        console.log(data)
+        const res = await fetch('/api/house', {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
 
-        // if (res.status === 200) {
-        //     const resp = await res.json()
-        //     return alert(resp.massage)
-        // }
+        if (res.status === 200) {
+            const resp = await res.json()
+            return alert(resp.massage)
+        }
         return
     }
 
@@ -141,8 +149,15 @@ export default function Edit_House({ params }: Props) {
                                 // e.preventDefault()
                                 handleSubmit()
                             }}>อัพเดท</Button>
-                            <Button type='reset' className='bg-red-500 hover:bg-red-600 text-xs w-1/4' onClick={() => {
-                                console.log('Delete')
+                            <Button type='reset' className='bg-red-500 hover:bg-red-600 text-xs w-1/4' onClick={async () => {
+                                const res = await fetch(`/api/house/`, {
+                                    method: 'DELETE',
+                                    body: JSON.stringify({ id: item.id })
+                                })
+                                if (res.ok) {
+                                    const resp = await res.json()
+                                    return router.replace('/admin/show/House')
+                                }
                             }}>ลบ</Button>
                         </div>
                     </div>

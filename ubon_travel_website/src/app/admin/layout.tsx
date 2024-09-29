@@ -78,7 +78,7 @@ export default function RootLayout({
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                menuShow ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+                menuShow ? "max-h-50 opacity-100" : "max-h-0 opacity-0"
               }`}
               style={{ transitionDuration: "0.25s" }}
             >

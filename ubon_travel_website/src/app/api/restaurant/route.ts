@@ -15,12 +15,12 @@ export async function POST(req: any) {
 export async function PUT(req: any) {
   const data = await req.json();
   const promisePool = mysqlPool.promise();
-  await promisePool.query("UPDATE restaurants set ? WHERE travel_id = ?", [data, data['travel_id']]);
+  await promisePool.query("UPDATE restaurants set ? WHERE r_id = ?", [data, data['r_id']]);
   return NextResponse.json({ massage: "Update Successfully" }, { status: 200 });
 }
 export async function DELETE(req: any) {
   const data = await req.json();
   const promisePool = mysqlPool.promise();
-  await promisePool.query("DELETE FROM `restaurants` WHERE travel_id = ?", [data['travel_id']]);
+  await promisePool.query("DELETE FROM `restaurants` WHERE r_id = ?", [data['r_id']]);
   return NextResponse.json({ massage: "DELETE Successfully" }, { status: 200 });
 }

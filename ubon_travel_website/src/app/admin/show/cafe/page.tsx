@@ -112,7 +112,7 @@ export default function ShowCafe({ }: Props) {
                           </Link>
                         </button>
                         <button className="hover:bg-green-500 border-none active:scale-90 transition-all ease-in-out outline-none w-[5rem] h-[2.5rem] ml-2 bg-green-400 text-white rounded-lg text-sm">
-                          <Link href={``} className="w-full h-full">
+                        <Link href={`/admin/show/cafe/edit/${item.r_id}`} className="w-full h-full">
                             แก้ไข
                           </Link>
                         </button>
@@ -149,7 +149,7 @@ export default function ShowCafe({ }: Props) {
                           </Link>
                         </button>
                         <button className="hover:bg-green-500 border-none active:scale-90 transition-all ease-in-out outline-none w-[5rem] h-[2.5rem] ml-2 bg-green-400 text-white rounded-lg text-sm">
-                          <Link href={``} className="w-full h-full">
+                          <Link href={`/admin/show/cafe/edit/${item.r_id}`} className="w-full h-full">
                             แก้ไข
                           </Link>
                         </button>
