@@ -100,13 +100,13 @@ export default function RootLayout({
                   <span className="text-base font-thin">ที่พักอาศัย</span>
                 </button>
               </Link>
-              <Link href={""}>
+              <Link href={"/admin/show/type"}>
                 <button className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none">
                   <Image src={"/database.png"} width={20} height={20} alt="" />
                   <span className="text-base font-thin">ประเภท</span>
                 </button>
               </Link>
-              <Link href={""}>
+              <Link href={"/admin/show/user"}>
                 <button className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none">
                   <Image src={"/database.png"} width={20} height={20} alt="" />
                   <span className="text-base font-thin">ผู้ใช้</span>
