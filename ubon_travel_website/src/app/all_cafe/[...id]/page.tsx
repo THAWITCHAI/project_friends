@@ -62,7 +62,7 @@ export default function DetailCafe({ params }: Props) {
                                                 className='rounded-lg'
                                             />
                                         </CarouselItem>
-                                        {item.r_image_2 != "" && (
+                                        {item.r_image_2 != null && (
                                             <CarouselItem className=' overflow-hidden flex justify-center items-center'>
                                                 <Image
                                                     src={item.r_image_2}
@@ -73,7 +73,7 @@ export default function DetailCafe({ params }: Props) {
                                                 />
                                             </CarouselItem>
                                         )}
-                                        {item.r_image_3 != "" && (
+                                        {item.r_image_3 != null && (
                                             <CarouselItem className=' overflow-hidden flex justify-center items-center'>
                                                 <Image
                                                     src={item.r_image_3}
