@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/carousel"
 
 
-type Props = object | any
+type Props = object
 
 interface Cafe {
     r_id: number,
