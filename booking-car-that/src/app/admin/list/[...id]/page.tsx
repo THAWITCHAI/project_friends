@@ -29,6 +29,17 @@ export default function List_id({ params }: Props) {
     }
   };
 
+  const confirm_carReturn = async (cid: any) => {
+    const res = await fetch("/api/confirm_carRetuen", {
+      method: "POST",
+      body: JSON.stringify(cid),
+    });
+    if (res.ok) {
+      const resp = await res.json();
+      return alert(resp["massage"]);
+    }
+  };
+
   return (
     <div className="h-full w-full">
       {booking.map((item, index) => {
@@ -42,7 +53,7 @@ export default function List_id({ params }: Props) {
               <div className="w-[82%] h-full overflow-y-scroll text-gray-500 p-10">
                 <div className="w-full h-32 text-white text-5xl flex justify-center items-center bg-green-500 rounded-lg">
                   {String(item["sid"]) === "2" ?
-                    "กรุณารอ กำลังอนุมัติการจอง":item['sname']}
+                    "กรุณารอ กำลังอนุมัติการจอง" : item['sname']}
                 </div>
                 <div className=" h-[20rem] w-full overflow-hidden flex justify-around items-center mt-10">
                   <div className="w-fit h-fit rounded-lg overflow-hidden">
@@ -277,17 +288,33 @@ export default function List_id({ params }: Props) {
                     >
                       กลับ
                     </button>
-                    <button
-                      className="w-1/4 h-[2rem] text-white bg-green-500 rounded-lg active:scale-90 transition-all ease-in-out"
-                      onClick={() => {
-                        const data = {
-                          cid: item["cid"],
-                        };
-                        confirm_car(data);
-                      }}
-                    >
-                      อนุมัติการคืน
-                    </button>
+                    {String(item.sid) == String(2) && (
+                      <button
+                        className="w-1/4 h-[2rem] text-white bg-green-500 rounded-lg active:scale-90 transition-all ease-in-out"
+                        onClick={() => {
+                          const data = {
+                            cid: item["cid"],
+                          };
+                          confirm_car(data);
+                        }}
+                      >
+                        อนุมัติการจอง
+                      </button>
+                    )}
+                    {String(item.sid) == String(3) && (
+                      <button
+                        className="w-1/4 h-[2rem] text-white bg-green-500 rounded-lg active:scale-90 transition-all ease-in-out"
+                        onClick={() => {
+                          const data = {
+                            bid: item["bid"],
+                            cid: item["cid"],
+                          };
+                          confirm_carReturn(data);
+                        }}
+                      >
+                        อนุมัติคืน
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

@@ -8,8 +8,8 @@ import { useSession } from "next-auth/react";
 
 type Props = {};
 
-export default function Setting({}: Props) {
-  const {data:session} = useSession()
+export default function Setting({ }: Props) {
+  const { data: session } = useSession()
   const [file, setFile] = useState("");
   return (
     <div className="setting-bg">
@@ -143,13 +143,9 @@ export default function Setting({}: Props) {
             </button>
           </div>
           <div className="box-show-btn">
-            {file == "" ? (
-              ""
-            ) : (
-              <button className="btn text-white text-xl rounded-lg bg-green-500">
-                อัพเดท
-              </button>
-            )}
+            <button className="btn text-white text-xl rounded-lg bg-green-500">
+              อัพเดท
+            </button>
           </div>
         </div>
       </div>

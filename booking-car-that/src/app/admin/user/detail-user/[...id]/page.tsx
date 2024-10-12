@@ -163,15 +163,10 @@ export default function DetailUser({ params }: Props) {
                     </button>
                   </div>
                   <div className="box-show-btn">
-                    {file == ""  ? (
-                      <button className="btn text-white text-xl rounded-lg bg-gray-500">
-                        อัพเดท
-                      </button>
-                    ) : (
-                      <button className="btn text-white text-xl rounded-lg bg-green-500">
-                        อัพเดท
-                      </button>
-                    )}
+
+                    <button className="btn text-white text-xl rounded-lg bg-green-500">
+                      อัพเดท
+                    </button>
                   </div>
                 </div>
               );
