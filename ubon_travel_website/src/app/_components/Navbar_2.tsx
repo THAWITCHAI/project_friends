@@ -63,7 +63,7 @@ export default function Navbar({ }: Props) {
                   <DropdownMenuItem className="flex justify-around items-center">
                     <Image src={"/user.png"} width={24} height={24} alt="" />
                     <p className=" w-[5rem] h-[2rem] flex justify-center items-center">
-                      Profile
+                      Profile Bro
                     </p>
                   </DropdownMenuItem>
                   <DropdownMenuItem
