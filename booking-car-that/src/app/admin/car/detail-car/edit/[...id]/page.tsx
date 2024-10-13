@@ -7,15 +7,48 @@ type Props = object
 export default function EditCar({ params }: Props) {
     const { id } = params
     const [data, setData] = useState([])
+    const [TypeCar, setTypeCar] = useState([])
+    const [status, setStatus] = useState([])
+    const [form, setForm] = useState({})
 
     useEffect(() => {
         getCar()
+        getTypeCar()
+        getStatus()
     }, [])
+
     const getCar = () => {
         fetch('/api/car')
             .then((res) => res.json())
             .then((res) => setData(res))
     }
+    const getTypeCar = () => {
+        fetch('/api/type_car')
+            .then((res) => res.json())
+            .then((res) => setTypeCar(res))
+    }
+    const getStatus = () => {
+        fetch('/api/status')
+            .then((res) => res.json())
+            .then((res) => setStatus(res))
+    }
+
+
+    const handleChange = (e: any) => {
+        setForm({
+            ...this,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const updateCar = async (id: string) => {
+        console.log(form)
+        // const res = await fetch('api/type_car', {
+        //     method: 'PUT',
+        //     body: JSON.stringify()
+        // })
+    }
+
 
     const filCar = data.filter((item) => String(item['cid']) == String(id[0]))
     return (
@@ -28,38 +61,51 @@ export default function EditCar({ params }: Props) {
                             <h1 className='text-black font-normal w-full text-center text-xl'>แก้ไขข้อมูลรถ</h1>
                             <div className='w-full flex justify-center items-center gap-2'>
                                 <label className='w-[5rem] text-start text-black'>ID</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} disabled />
+                                <input name='cid' type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} disabled />
                                 <label className='w-[5rem] text-start text-black'>Brand</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['cbrand']} />
+                                <input name='cbrand' onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['cbrand']} />
                             </div>
                             <div className='w-full flex justify-center items-center gap-2'>
                                 <label className='w-[5rem] text-start text-black'>Model</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} />
+                                <input name='cmodel' onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Model' defaultValue={item['cmodel']} />
                                 <label className='w-[5rem] text-start text-black'>Seat</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['cseat']} />
+                                <input name='cseat' onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Seat' defaultValue={item['cseat']} />
                             </div>
                             <div className='w-full flex justify-center items-center gap-2'>
                                 <label className='w-[5rem] text-start text-black'>Color</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} />
+                                <input name='ccolor' onChange={handleChange} type="color" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Color' defaultValue={item['ccolor']} />
                                 <label className='w-[5rem] text-start text-black'>Lincense</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['cseat']} />
+                                <input name='clincense' onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['clincense']} />
                             </div>
                             <div className='w-full flex justify-center items-center gap-2'>
                                 <label className='w-[5rem] text-start text-black'>File</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} />
+                                <input name='cpath' type="file" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} />
                                 <label className='w-[5rem] text-start text-black'>Status</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['cseat']} />
+                                <select defaultValue={item['sid']} name="sid" onChange={handleChange} id="" className='w-1/2 h-[2.5rem] rounded-md border text-black'>
+                                    <option className='text-black' value="">Select Status</option>
+                                    {
+                                        status.map((sc, index) => (
+                                            <option key={index} className='text-black' value={sc['sid']}>{sc['sname']}</option>
+                                        ))
+                                    }
+                                </select>
                             </div>
                             <div className='w-full flex justify-center items-center gap-2'>
                                 <label className='w-[5rem] text-start text-black'>Price</label>
-                                <input type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} />
+                                <input onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Price' defaultValue={item['cprice']} />
                                 <label className='w-[5rem] text-start text-black'>Type Car</label>
-                                <select name="" id="" className='w-1/2 h-[2.5rem] rounded-md border text-black'>
-
-                                    <option className='text-black' value="">Select Status</option>
-                                    <option className='text-black' value="available">Available</option>
-                                    <option className='text-black' value="unavailable">Unavailable</option>
+                                <select defaultValue={item['tid']} name="tid" id="" className='w-1/2 h-[2.5rem] rounded-md border text-black'>
+                                    <option className='text-black' value="">Select Type</option>
+                                    {
+                                        TypeCar.map((type, index) => (
+                                            <option key={index} className='text-black' value={type['tid']}>{type['tname']}</option>
+                                        ))
+                                    }
                                 </select>
+                            </div>
+                            <div className='w-full flex justify-center items-center gap-2'>
+                                <button className='text-white w-1/4 bg-red-500 rounded-md h-[2rem]' onClick={() => history.back()}>ยกเลิก</button>
+                                <button className='text-white w-1/4 bg-blue-500 rounded-md h-[2rem]' onClick={() => updateCar(item['cid'])}>อัพเดท</button>
                             </div>
                         </div>
                     ))
