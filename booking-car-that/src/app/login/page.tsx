@@ -6,7 +6,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 
 type Props = {};
 
-export default function Home({}: Props) {
+export default function Home({ }: Props) {
   const [form, setForm] = useState({});
   const [base64_profile, setBase64_profile] = useState<String | null>(null);
   const [base64, setBase64] = useState<String | null>(null);
@@ -40,6 +40,9 @@ export default function Home({}: Props) {
   };
 
   const handleSubmit = async () => {
+    if (String(form.upwd).length < 8) {
+      return alert("รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร");
+    }
     if (
       Object.keys(form).length <= 6 &&
       base64 == null &&

@@ -1,5 +1,6 @@
 'use client'
 import Sidebar from '@/app/_components/Admin/Sidebar/Sidebar'
+import { useRouter } from 'next/navigation'
 import React, { FormEvent, useEffect, useState } from 'react'
 
 type Props = object
@@ -43,10 +44,17 @@ export default function EditCar({ params }: Props) {
 
     const updateCar = async (id: string) => {
         console.log(form)
-        // const res = await fetch('api/type_car', {
-        //     method: 'PUT',
-        //     body: JSON.stringify()
-        // })
+        const res = await fetch('/api/car', {
+            method: 'PUT',
+            body: JSON.stringify(Object.assign({}, form, { cid: id }))
+        })
+        if (res.ok) {
+            const resp = await res.json()
+            alert(resp['massage'])
+            getCar()
+            return
+        }
+        return
     }
 
 

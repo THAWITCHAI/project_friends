@@ -4,7 +4,7 @@ import "./style.css";
 import Link from "next/link";
 type Props = {};
 
-export default function Allcars({}: Props) {
+export default function Allcars({ }: Props) {
   const [dataType, setDataType] = useState([]);
   const [select, setSelect] = useState(1);
   const [cars, setCars] = useState([]);
@@ -27,16 +27,21 @@ export default function Allcars({}: Props) {
   };
 
   const handleDelete = async (cid: any) => {
-    await fetch("/api/car/delete", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cid: cid }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        alert(res["massage"]);
-        getDatacar();
-      });
+    const c = confirm("Are you sure you want to delete")
+    if (c == true) {
+      await fetch("/api/car/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cid: cid }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          alert(res["massage"]);
+          getDatacar();
+        });
+      return
+    }
+    return
   };
   const handleDeleteType = async (cid: any) => {
     await fetch("/api/type_car/", {

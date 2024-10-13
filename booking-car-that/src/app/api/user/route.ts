@@ -25,6 +25,6 @@ export async function DELETE(req: any) {
 export async function PUT(req: any) {
   const data = await req.json();
   const promisePool = mysqlPool.promise();
-  await promisePool.query("UPDATE  users set ? WHERE uid=?", [data, data.uid]);
+  await promisePool.query("UPDATE users set ? WHERE uid = ?", [data, data.uid]);
   return NextResponse.json({ massage: "Add Successfully" }, { status: 200 });
 }
