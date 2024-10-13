@@ -11,7 +11,6 @@ type Props = any;
 export default function DetailUser({ params }: Props) {
   const { id } = params;
 
-  const [file, setFile] = useState("");
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -23,6 +22,56 @@ export default function DetailUser({ params }: Props) {
       .then((res) => res.json())
       .then((res) => setData(res));
   };
+
+  const [base64_profile, setBase64_profile] = useState<String | null>(null);
+  const [form, setForm] = useState({})
+
+
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleFileProfileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBase64_profile(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e: string) => {
+    const data = Object.assign({}, form, { udive: base64_profile, uid: e })
+    if (data.udive == null) {
+      console.log(form)
+      const res = await fetch('http://localhost:3000/api/user/', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.assign({}, form, { uid: e })),
+      })
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      alert('แก้ไขข้อมูลสำเร็จ')
+      return
+    }
+    if (data.udive != null) {
+      console.log(data)
+      const res = await fetch('http://localhost:3000/api/user/', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      alert('แก้ไขข้อมูลสำเร็จ')
+      return
+    }
+    return
+  }
 
   return (
     <div className="main">
@@ -59,6 +108,8 @@ export default function DetailUser({ params }: Props) {
                       className="Image"
                     />
                     <input
+                      name="uname"
+                      onChange={handleChange}
                       type="text"
                       placeholder="ชื่อ - นามสกุล"
                       className="input"
@@ -74,6 +125,8 @@ export default function DetailUser({ params }: Props) {
                       className="Image"
                     />
                     <input
+                      name="unick_name"
+                      onChange={handleChange}
                       type="text"
                       placeholder="ชื่อเล่น"
                       className="input"
@@ -89,6 +142,8 @@ export default function DetailUser({ params }: Props) {
                       className="Image"
                     />
                     <input
+                      name="uemail"
+                      onChange={handleChange}
                       type="text"
                       placeholder="อีเมล"
                       className="input"
@@ -104,6 +159,8 @@ export default function DetailUser({ params }: Props) {
                       className="Image"
                     />
                     <input
+                      name="upwd"
+                      onChange={handleChange}
                       type="text"
                       placeholder="รหัสผ่าน"
                       className="input"
@@ -119,6 +176,8 @@ export default function DetailUser({ params }: Props) {
                       className="Image"
                     />
                     <input
+                      name="uphone"
+                      onChange={handleChange}
                       type="text"
                       placeholder="เบอร์โทร"
                       className="input"
@@ -149,7 +208,7 @@ export default function DetailUser({ params }: Props) {
                       type="file"
                       placeholder="รหัสผู้ใช้"
                       className="file"
-                      onChange={(e) => setFile(e.target.value)}
+                      onChange={handleFileProfileChange}
                     />
                   </div>
                   <div className="box-show-btn">
@@ -164,7 +223,7 @@ export default function DetailUser({ params }: Props) {
                   </div>
                   <div className="box-show-btn">
 
-                    <button className="btn text-white text-xl rounded-lg bg-green-500">
+                    <button onClick={() => handleSubmit(item['uid'])} className="btn text-white text-xl rounded-lg bg-green-500">
                       อัพเดท
                     </button>
                   </div>
