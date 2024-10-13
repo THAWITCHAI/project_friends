@@ -4,6 +4,7 @@ import "./reponsive.css";
 import "./style.css";
 import Image from "next/image";
 import Sidebar from "@/app/_components/Admin/Sidebar/Sidebar";
+import Link from "next/link";
 
 type Props = any;
 
@@ -101,7 +102,7 @@ export default function Detail_Cars({ params }: Props) {
                         <h1 className="text-black title-name">สี</h1>
                       </div>
                       <div className="resualt text-black">
-                        <div className="rounded-xl w-12 h-12 color" style={{background:String(item['ccolor'])}}></div>
+                        <div className="rounded-xl w-12 h-12 color" style={{ background: String(item['ccolor']) }}></div>
                       </div>
                     </div>
                     <div className="detail-item">
@@ -116,7 +117,7 @@ export default function Detail_Cars({ params }: Props) {
                         <h1 className="text-black title-name">ป้ายทะเบียน</h1>
                       </div>
                       <div className="resualt text-black">
-                      {item['clicense']}
+                        {item['clicense']}
                       </div>
                     </div>
                     <div className="detail-item">
@@ -158,6 +159,10 @@ export default function Detail_Cars({ params }: Props) {
                       </div>
                       <div className="resualt text-green-500">{item['sname']}</div>
                     </div>
+                  </div>
+                  <div className="w-full h-fit flex justify-center items-center gap-4">
+                    <button className="w-[20%] h-[2rem] rounded-md bg-yellow-500" onClick={() => history.back()}>กลับก่อนหน้า</button>
+                    <button className="w-[20%] h-[2rem] rounded-md bg-green-500"> <Link href={'/admin/car/detail-car/edit/' + item['cid']}>แก้ไข</Link> </button>
                   </div>
                 </div>
               );
