@@ -1,6 +1,6 @@
 'use client'
 import Sidebar from '@/app/_components/Admin/Sidebar/Sidebar'
-import React, { useEffect, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 
 type Props = object
 
@@ -34,9 +34,9 @@ export default function EditCar({ params }: Props) {
     }
 
 
-    const handleChange = (e: any) => {
+    const handleChange = (e) => {
         setForm({
-            ...this,
+            ...form,
             [e.target.name]: e.target.value
         })
     }
@@ -75,14 +75,14 @@ export default function EditCar({ params }: Props) {
                                 <label className='w-[5rem] text-start text-black'>Color</label>
                                 <input name='ccolor' onChange={handleChange} type="color" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Color' defaultValue={item['ccolor']} />
                                 <label className='w-[5rem] text-start text-black'>Lincense</label>
-                                <input name='clincense' onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['clincense']} />
+                                <input name='clincense' onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Brand' defaultValue={item['clicense']} />
                             </div>
                             <div className='w-full flex justify-center items-center gap-2'>
                                 <label className='w-[5rem] text-start text-black'>File</label>
-                                <input name='cpath' type="file" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' defaultValue={item['cid']} />
+                                <input name='cpath' type="file" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='ID' />
                                 <label className='w-[5rem] text-start text-black'>Status</label>
                                 <select defaultValue={item['sid']} name="sid" onChange={handleChange} id="" className='w-1/2 h-[2.5rem] rounded-md border text-black'>
-                                    <option className='text-black' value="">Select Status</option>
+                                    <option className='text-black' value="0">Select Status</option>
                                     {
                                         status.map((sc, index) => (
                                             <option key={index} className='text-black' value={sc['sid']}>{sc['sname']}</option>
@@ -92,13 +92,13 @@ export default function EditCar({ params }: Props) {
                             </div>
                             <div className='w-full flex justify-center items-center gap-2'>
                                 <label className='w-[5rem] text-start text-black'>Price</label>
-                                <input onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Price' defaultValue={item['cprice']} />
+                                <input name='cprice' onChange={handleChange} type="text" className='w-1/2 border h-[2.5rem] rounded-md outline-none px-2 text-black' placeholder='Price' defaultValue={item['cprice']} />
                                 <label className='w-[5rem] text-start text-black'>Type Car</label>
-                                <select defaultValue={item['tid']} name="tid" id="" className='w-1/2 h-[2.5rem] rounded-md border text-black'>
+                                <select onChange={handleChange} defaultValue={String(item['tid'])} name="tid" className='w-1/2 h-[2.5rem] rounded-md border text-black'>
                                     <option className='text-black' value="">Select Type</option>
                                     {
                                         TypeCar.map((type, index) => (
-                                            <option key={index} className='text-black' value={type['tid']}>{type['tname']}</option>
+                                            <option key={index} className='text-black' value={String(type['tid'])}>{type['tname']}</option>
                                         ))
                                     }
                                 </select>
