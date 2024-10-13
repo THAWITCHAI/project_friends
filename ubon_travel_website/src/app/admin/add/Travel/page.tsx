@@ -231,6 +231,9 @@ export default function AddTravel({ }: Props) {
               name="type_travel_id"
               onChange={handleChang}
             >
+              <option value="0" className="outline-none">
+                เลือกประเภททสถานที่
+              </option>
               {dataTypeTravel.map((item, index) => {
                 return (
                   <option
