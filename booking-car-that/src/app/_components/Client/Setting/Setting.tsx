@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "./style.css";
 import "./reponsive.css";
 import Image from "next/image";
@@ -11,6 +11,22 @@ type Props = {};
 export default function Setting({ }: Props) {
   const { data: session } = useSession()
   const [file, setFile] = useState("");
+  const [form, setForm] = useState({})
+
+
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    
+    if (file != "") {
+      console.log(form)
+      return
+    }
+  }
+
   return (
     <div className="setting-bg">
       <div className="show-contact">
