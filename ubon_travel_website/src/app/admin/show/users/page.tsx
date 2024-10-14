@@ -75,7 +75,7 @@ export default function User({ }: Props) {
                                         item.id == 1 ? (
                                             <td class="px-6 py-4">
                                                 <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
-                                                    <Link href={`#`}>Edit</Link>
+                                                    <Link href={`/admin/show/users/${item.id}`}>Edit</Link>
                                                 </button>
                                                 <button className="px-4 py-2 ml-2 bg-red-500 hover:bg-red-600 text-white rounded-md" onClick={async () => {
                                                     const res = await fetch(`/api/users/${item.id}`, {
