@@ -64,16 +64,16 @@ export default function TravelDetail({ params }: Props) {
               </button>
             </h1>
             <div className=" mt-5 h-[25rem] flex justify-between items-center">
-              <div className="h-full w-[49%] px-10 overflow-hidden">
+              <div className="h-[80%] w-[49%] px-10 overflow-hidden">
                 <Carousel className="w-full h-full flex justify-center items-center">
                   <CarouselContent>
                     <CarouselItem>
                       <Image
                         src={item.travel_image_1}
-                        width={500}
-                        height={500}
+                        width={400}
+                        height={400}
                         alt=""
-                        className="rounded-lg"
+                        className="rounded-lg "
                       />
                     </CarouselItem>
                     {item.travel_image_2 !== '-' && (
@@ -196,6 +196,19 @@ export default function TravelDetail({ params }: Props) {
               <div className="h-[20rem] flex justify-center items-center mt-5">
                 <div className="shadow-lg rounded-lg w-[80%] h-full overflow-y-scroll scrollbar-hide text-center p-5">
                   {item.travel_background}
+                </div>
+              </div>
+            </div>
+            <div className="my-10 py-2">
+              <li className="text-lg pb-5 border-b my-2">
+                ความเป็นมา หรือ คำแนะนำ
+              </li>
+              <div className=" h-[20rem] flex justify-center items-center mt-5">
+                <div className="shadow-lg rounded-lg w-[80%] h-full overflow-y-scroll scrollbar-hide text-center p-5 flex flex-col justify-start items-center gap-4">
+                  <h1 className="text-xl">{item.travel_facilies_1}</h1>
+                  <h1 className="text-xl">{item.travel_facilies_2}</h1>
+                  <h1 className="text-xl">{item.travel_facilies_3}</h1>
+                  <h1 className="text-xl">{item.travel_facilies_4}</h1>
                 </div>
               </div>
             </div>

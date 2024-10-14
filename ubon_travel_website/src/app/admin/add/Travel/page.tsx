@@ -11,6 +11,7 @@ export default function AddTravel({ }: Props) {
   const [travel_image_1, setTravel_image_1] = useState<String | null>(null);
   const [travel_image_2, setTravel_image_2] = useState<String | null>('-');
   const [travel_image_3, setTravel_image_3] = useState<String | null>('-');
+  const [other, setOther] = useState(true)
 
 
 
@@ -79,6 +80,8 @@ export default function AddTravel({ }: Props) {
   useEffect(() => {
     travelModule.getTypeTravels().then((res: any) => setDataTypeTravel(res));
   }, []);
+
+  console.log(other)
 
   return (
     <div className="w-full h-fit overflow-x-scroll">
@@ -295,14 +298,27 @@ export default function AddTravel({ }: Props) {
             <div className="w-[15%] h-10 pl-5 flex justify-between items-center">
               <input
                 required
-                onChange={handleChang}
+                onChange={(e) => (
+                  setOther(e.target.checked)
+                )}
                 type="checkbox"
-                name="travel_facilies_4"
                 value={"อื่นๆ"}
               />{" "}
               <label htmlFor="">อื่นๆ</label>
             </div>
           </div>
+          {
+            other == true && (
+              <input
+                className="w-full h-[3rem] border outline-none px-2 rounded-md"
+                required
+                onChange={handleChang}
+                type="text"
+                name="travel_facilies_4"
+                placeholder="กรอกอื่นๆ"
+              />
+            )
+          }
           <div className="w-full h-fit flex justify-start items-center">
             <li className="w-full h-[2rem] ">
               รูปสถานที่ท่องเที่ยว 1{" "}

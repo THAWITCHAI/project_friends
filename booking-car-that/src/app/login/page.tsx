@@ -84,7 +84,7 @@ export default function Home({ }: Props) {
       });
     }
   };
-  if (status === "unauthenticated" || status === "loading") {
+  if (status == "unauthenticated" || status == "loading") {
     return (
       <div className="home">
         <div className="box-home">
@@ -293,12 +293,13 @@ export default function Home({ }: Props) {
       </div>
     );
   }
-  if (status === "authenticated" && session) {
+  if (status == "authenticated" && session) {
     if (session.user.rname == "User") {
       return router.replace("/client/booking");
     }
     if (session.user.rname == "Admin") {
       return router.replace("/admin/welcome");
     }
+    return
   }
 }

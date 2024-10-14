@@ -376,8 +376,8 @@ export default function AddTravel({ params }: any) {
                           required
                           onChange={handleChang}
                           type="checkbox"
-                          name="travel_facilies_1"
-                          value={"ที่จอด"}
+                          name="travel_facilies_2"
+                          value={"ร้านค้า"}
                           checked
                         />
                       )
@@ -388,8 +388,8 @@ export default function AddTravel({ params }: any) {
                           required
                           onChange={handleChang}
                           type="checkbox"
-                          name="travel_facilies_1"
-                          value={"ที่จอด"}
+                          name="travel_facilies_2"
+                          value={"ร้านค้า"}
                         />
                       )
                     }
@@ -402,8 +402,8 @@ export default function AddTravel({ params }: any) {
                           required
                           onChange={handleChang}
                           type="checkbox"
-                          name="travel_facilies_1"
-                          value={"ที่จอด"}
+                          name="travel_facilies_3"
+                          value={"ห้องน้ำ"}
                           checked
                         />
                       )
@@ -414,8 +414,8 @@ export default function AddTravel({ params }: any) {
                           required
                           onChange={handleChang}
                           type="checkbox"
-                          name="travel_facilies_1"
-                          value={"ที่จอด"}
+                          name="travel_facilies_3"
+                          value={"ห้องน้ำ"}
                         />
                       )
                     }
@@ -426,10 +426,8 @@ export default function AddTravel({ params }: any) {
                       item.travel_facilies_4 != null && (
                         <input
                           required
-                          onChange={handleChang}
                           type="checkbox"
-                          name="travel_facilies_1"
-                          value={"ที่จอด"}
+                          name="travel_facilies_4"
                           checked
                         />
                       )
@@ -438,16 +436,27 @@ export default function AddTravel({ params }: any) {
                       item.travel_facilies_4 == null && (
                         <input
                           required
-                          onChange={handleChang}
                           type="checkbox"
-                          name="travel_facilies_1"
-                          value={"ที่จอด"}
+                          name="travel_facilies_4"
                         />
                       )
                     }
                     <label htmlFor="">อื่นๆ</label>
                   </div>
                 </div>
+                {
+                  item.travel_facilies_4 != null && (
+                    <input
+                      required
+                      className="w-full h-[3rem] rounded-md outline-none border px-2"
+                      placeholder="อื่นๆ ระบุ"
+                      onChange={handleChang}
+                      type="text"
+                      name="travel_facilies_4"
+                      defaultValue={item.travel_facilies_4}
+                    />
+                  )
+                }
                 <div className="w-full h-fit flex justify-start items-center">
                   <li className="w-full h-[2rem] ">
                     รูปสถานที่ท่องเที่ยว 1
