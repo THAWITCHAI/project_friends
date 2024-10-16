@@ -52,7 +52,7 @@ export default function TravelDetail({ params }: Props) {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center bg-[#EDE7E3]">
         {detail.map((item, index) => {
           const url = item.travel_url;
           return (

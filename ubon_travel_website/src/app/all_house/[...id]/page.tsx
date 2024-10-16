@@ -49,7 +49,7 @@ export default function DetailCafe({ params }: Props) {
                 return (
                     <div className='w-full h-fit' key={index}>
                         <h1 className='w-full h-fit text-3xl px-10 my-10 text-center'>{item.name}</h1>
-                        <div className='w-full h-[70%] p-10 my-5 flex justify-center items-center'>
+                        <div className='w-full h-[70%] p-10 my-5 flex justify-around items-center gap-4'>
                             <div className='w-[35%] h-[20rem] flex justify-center items-center'>
                                 <Carousel>
                                     <CarouselContent>
@@ -89,6 +89,9 @@ export default function DetailCafe({ params }: Props) {
                                     <CarouselNext />
                                 </Carousel>
 
+                            </div>
+                            <div className='w-[40%] h-[20rem] text-center'>
+                                {item.background}
                             </div>
                         </div>
                         <h1 className='w-full px-10 text-3xl text-center'>ที่อยู่</h1>

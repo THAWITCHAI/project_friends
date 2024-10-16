@@ -8,9 +8,9 @@ type Props = {};
 
 export default function AddRestaurant({ }: Props) {
     const [form, setForm] = useState({})
-    const [r_image_1, setR_image_1] = useState<String | null>('-');
-    const [r_image_2, setR_image_2] = useState<String | null>('-');
-    const [r_image_3, setR_image_3] = useState<String | null>('-');
+    const [r_image_1, setR_image_1] = useState<String | null>(null);
+    const [r_image_2, setR_image_2] = useState<String | null>(null);
+    const [r_image_3, setR_image_3] = useState<String | null>(null);
 
     const handChanged = (e: any) => {
         setForm(

@@ -54,7 +54,7 @@ export default function AllTravels({ }: Props) {
     travelModule.getTravels().then((res) => setTravels(res));
   }, []);
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-[#FEFCFD]">
       <Navbar />
       <div className=" w-full h-fit px-10 py-10 flex justify-center items-center outline-none">
         <input
