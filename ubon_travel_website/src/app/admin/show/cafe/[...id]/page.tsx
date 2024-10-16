@@ -47,14 +47,14 @@ export default function DetailCafe({ params }: Props) {
                 <Image src={item.r_image_1} width={500} height={500} alt='' className='rounded-xl' />
               </div>
               {
-                item.r_image_2 != '-' && (
+                item.r_image_2 != null && (
                   <div className='  w-full my-10 h-fit flex justify-center items-center'>
                     <Image src={item.r_image_2} width={500} height={500} alt='' className='rounded-xl' />
                   </div>
                 )
               }
               {
-                item.r_image_3 != '-' && (
+                item.r_image_3 != null && (
                   <div className='  w-full my-10 h-fit flex justify-center items-center'>
                     <Image src={item.r_image_3} width={500} height={500} alt='' className='rounded-xl' />
                   </div>

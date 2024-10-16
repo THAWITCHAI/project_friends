@@ -144,7 +144,7 @@ export default function TravelDetail({ params }: Props) {
                     เด้ก - {item.travel_child_fee} ฿
                   </h1>
                 </div>
-                <div className="h-[20rem] w-[32%] p-2">
+                <div className="h-[20rem] w-[32%] p-2 border-l border-r">
                   <div className="w-full h-fit flex justify-center items-center">
                     <Image
                       src={"/calendar.png"}
