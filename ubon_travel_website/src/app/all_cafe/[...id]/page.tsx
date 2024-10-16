@@ -29,6 +29,7 @@ interface Cafe {
     r_image_1: string,
     r_image_2: string,
     r_image_3: string,
+    r_advice: string
 }
 
 
@@ -49,7 +50,7 @@ export default function DetailCafe({ params }: Props) {
                 return (
                     <div className='w-full h-fit' key={index}>
                         <h1 className='w-full h-fit text-3xl px-10 my-10 text-center'>{item.r_name}</h1>
-                        <div className='w-full h-[70%] p-10 my-5 flex justify-center items-center'>
+                        <div className='w-full h-[70%] p-10 my-5 flex justify-around items-center gap-10'>
                             <div className='w-[35%] h-[20rem] flex justify-center items-center'>
                                 <Carousel>
                                     <CarouselContent>
@@ -62,7 +63,7 @@ export default function DetailCafe({ params }: Props) {
                                                 className='rounded-lg'
                                             />
                                         </CarouselItem>
-                                        {item.r_image_2 != null && (
+                                        {item.r_image_2 != "" && (
                                             <CarouselItem className=' overflow-hidden flex justify-center items-center'>
                                                 <Image
                                                     src={item.r_image_2}
@@ -73,7 +74,7 @@ export default function DetailCafe({ params }: Props) {
                                                 />
                                             </CarouselItem>
                                         )}
-                                        {item.r_image_3 != null && (
+                                        {item.r_image_3 != "" && (
                                             <CarouselItem className=' overflow-hidden flex justify-center items-center'>
                                                 <Image
                                                     src={item.r_image_3}
@@ -88,7 +89,9 @@ export default function DetailCafe({ params }: Props) {
                                     <CarouselPrevious />
                                     <CarouselNext />
                                 </Carousel>
-
+                            </div>
+                            <div className='w-[30rem] h-[20rem] text-center p-4'>
+                                {item.r_advice}
                             </div>
                         </div>
                         <h1 className='px-10 text-3xl w-full text-center'>ที่อยู่</h1>
