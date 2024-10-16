@@ -72,7 +72,7 @@ export default function User({ }: Props) {
                                         {String(item.role) == '1' ? "Admin" : 'User'}
                                     </td>
                                     {
-                                        item.id == 1 ? (
+                                        String(item.role) == String(1) ? (
                                             <td class="px-6 py-4">
                                                 <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
                                                     <Link href={`/admin/show/users/${item.id}`}>Edit</Link>

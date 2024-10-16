@@ -37,9 +37,8 @@ export default function RootLayout({
               <span className="text-base font-thin">เพิ่มข้อมูลสถานที่</span>
             </button>
             <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                menuAdd ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-              }`}
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${menuAdd ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+                }`}
               style={{ transitionDuration: "0.25s" }}
             >
               <Link href={"/admin/add/Travel"}>
@@ -67,6 +66,12 @@ export default function RootLayout({
                   <span className="text-base font-thin">ประเภท</span>
                 </button>
               </Link>
+              <Link href={"/admin/add/admin"}>
+                <button className="pl-10 flex items-center space-x-3 hover:bg-[#ffffff67] p-2 rounded-lg transition-all duration-300 w-full outline-none">
+                  <Image src={"/add.png"} width={20} height={20} alt="" />
+                  <span className="text-base font-thin">เพิ่มผู้ดูแลระบบ</span>
+                </button>
+              </Link>
             </div>
             <br />
             <button
@@ -77,9 +82,8 @@ export default function RootLayout({
               <span className="text-base font-thin">แสดงข้อมูล</span>
             </button>
             <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                menuShow ? "max-h-50 opacity-100" : "max-h-0 opacity-0"
-              }`}
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${menuShow ? "max-h-50 opacity-100" : "max-h-0 opacity-0"
+                }`}
               style={{ transitionDuration: "0.25s" }}
             >
               <Link href={"/admin/show/Travels"}>
