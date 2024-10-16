@@ -57,13 +57,13 @@ export default function List({}: Props) {
                 value={1}
                 className="w-full h-full text-center  text-black"
               >
-                ทั้งหมด
+                ห้องอนุมัติ
               </option>
               <option
                 value={2}
                 className="w-full h-full text-center  text-black"
               >
-                คืนรถ
+                ห้องคืนรถ
               </option>
             </select>
           </div>
