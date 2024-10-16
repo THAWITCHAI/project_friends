@@ -66,7 +66,7 @@ export default function AllTravels({ params }: Props) {
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           className="w-1/2 shadow-md h-[3rem] px-5 rounded-full flex justify-center items-center outline-none"
-          placeholder="ค้นหา ชื่อ อำเภอ ตำบล หรือ ประเภท สถานที่ ที่คุณอยากจะไป"
+          placeholder="ค้นหา ชื่อ อำเภอ ตำบล หรือ ประเภท สถานที่ท่องเที่ยว ที่คุณอยากจะไป"
         />
       </div>
       <div className="px-5 w-full h-[25rem] flex items-center justify-center">
@@ -110,8 +110,8 @@ export default function AllTravels({ params }: Props) {
                 return (
                   <Link key={index} href={"/all-travels/" + item.travel_id}>
                     <div className="shadow-lg h-[15rem] rounded-md transition-all ease-in-out hover:scale-110 overflow-hidden">
-                      <Image
-                        src={"/back.jpg"}
+                    <Image
+                        src={item.travel_image_1}
                         width={200}
                         height={200}
                         alt=""

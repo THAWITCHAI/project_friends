@@ -61,7 +61,7 @@ export default function AllTravels({ }: Props) {
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           className="w-1/2 shadow-md h-[3rem] px-5 rounded-full flex justify-center items-center outline-none"
-          placeholder="ค้นหา ชื่อ อำเภอ ตำบล หรือ ประเภท สถานที่ ที่คุณอยากจะไป"
+          placeholder="ค้นหา ชื่อ อำเภอ ตำบล หรือ ประเภท สถานที่ท่องเที่ยว ที่คุณอยากจะไป"
         />
       </div>
       <div className="px-5 w-full h-[25rem] flex items-center justify-center ">
