@@ -104,7 +104,7 @@ export default function DetailCafe({ params }: Props) {
                             </div>
                             <div className=' flex flex-col justify-center items-center'>
                                 <h1 className='my-2'>จังหวัด {item.r_subdistrict}</h1>
-                                <h1 className='my-2'>รหัสไปษณีย์ {item.r_zip_code}</h1>
+                                <h1 className='my-2'>รหัสไปรษณีย์ {item.r_zip_code}</h1>
                                 <h1 className='my-2'>เวลาเปิด {item.r_open}</h1>
                                 <h1 className='my-2'>เวลาปิด {item.r_closs}</h1>
                             </div>
