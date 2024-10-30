@@ -23,7 +23,7 @@ export default function RootLayout({
         <div className="h-screen w-[20%] bg-gradient-to-b from-blue-400 to-blue-500 text-white p-4">
           {/* Logo Section */}
           <div className="mb-8">
-            <h1 className="text-xl font-mono font-thin tracking-wide text-center">
+            <h1 className="text-xl font-bold  tracking-wide text-center">
               Travel Ubon
             </h1>
           </div>

@@ -5,7 +5,7 @@ import travelModule from "../lib/globalApi";
 
 type Props = {};
 
-export default function Sidebar({}: Props) {
+export default function Sidebar({ }: Props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Sidebar({}: Props) {
           สถานที่ท่องเที่ยว
         </Link>
       </span>
-      <span className=" w-full h-fit my-2 flex justify-center items-center text-blue-500 active:scale-90 transition-all ease-in-out hover:scale-125">
+      <span className="rounded-md w-[9rem] py-2 h-fit my-2 flex justify-center items-center hover:bg-blue-500 hover:text-white text-blue-500 active:scale-90 transition-all ease-in-out hover:scale-125">
         <Link href={`/all-travels`} className="w-fit h-fit">
           ทั้งหมด
         </Link>
@@ -26,7 +26,7 @@ export default function Sidebar({}: Props) {
       {data.map((item, index) => {
         return (
           <span
-            className="bg-bu-500 p-2 w-full h-fit my-2 flex justify-center items-center text-blue-500 active:scale-90 transition-all ease-in-out hover:scale-125"
+            className="hover:border rounded-md w-[9rem] py-2 h-fit my-2 flex justify-center items-center hover:bg-blue-500 hover:text-white text-blue-500 active:scale-90 transition-all ease-in-out hover:scale-125"
             key={index}
           >
             <Link href={`/${item["type_travel_id"]}`} className="w-fit h-fit">

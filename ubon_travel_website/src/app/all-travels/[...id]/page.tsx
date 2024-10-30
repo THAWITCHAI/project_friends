@@ -52,7 +52,7 @@ export default function TravelDetail({ params }: Props) {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center bg-[#EDE7E3]">
+      <div className="flex justify-center items-center bg-white">
         {detail.map((item, index) => {
           const url = item.travel_url;
           return (
@@ -66,66 +66,82 @@ export default function TravelDetail({ params }: Props) {
                   กลับหน้าหลัก
                 </button>
               </h1>
-              <div className=" mt-5 h-[25rem] flex justify-between items-center">
-                <div className="h-full w-[49%] px-10 overflow-hidden">
-                  <Carousel className="w-full h-full flex justify-center items-center">
-                    <CarouselContent>
-                      <CarouselItem>
-                        <Image
-                          src={item.travel_image_1}
-                          width={500}
-                          height={500}
-                          alt=""
-                          className="rounded-lg"
-                        />
-                      </CarouselItem>
-                      {item.travel_image_2 !== '-' && (
+              <div className=" mt-5 h-fit flex justify-between items-center">
+                <div className="h-full w-[49%] mb-5 px-10 overflow-hidden">
+                  <div className="w-full h-[25rem] overflow-hidden rounded-md">
+                    <Carousel className="w-full h-full flex justify-center items-center">
+                      <CarouselContent>
                         <CarouselItem>
                           <Image
-                            src={item.travel_image_2}
+                            src={item.travel_image_1}
                             width={500}
                             height={500}
                             alt=""
                             className="rounded-lg"
                           />
                         </CarouselItem>
-                      )}
-                      {item.travel_image_3 !== '-' && (
-                        <CarouselItem>
-                          <Image
-                            src={item.travel_image_3}
-                            width={500}
-                            height={500}
-                            alt=""
-                            className="rounded-lg"
-                          />
-                        </CarouselItem>
-                      )}
-                    </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
-                  </Carousel>
+                        {item.travel_image_2 !== '-' && (
+                          <CarouselItem>
+                            <Image
+                              src={item.travel_image_2}
+                              width={500}
+                              height={500}
+                              alt=""
+                              className="rounded-lg"
+                            />
+                          </CarouselItem>
+                        )}
+                        {item.travel_image_3 !== '-' && (
+                          <CarouselItem>
+                            <Image
+                              src={item.travel_image_3}
+                              width={500}
+                              height={500}
+                              alt=""
+                              className="rounded-lg"
+                            />
+                          </CarouselItem>
+                        )}
+                      </CarouselContent>
+                      <CarouselPrevious />
+                      <CarouselNext />
+                    </Carousel>
+                  </div>
                 </div>
                 <div className="h-full w-[49%] py-14">
-                  <div className="w-full h-fit p-5 border-b-2 border-dashed border-gray-500">
-                    <li className="w-full h-fit">ประเภท สถานที่ท่องเที่ยว</li>
+                  <div className="w-full flex flex-col gap-2 h-fit p-5 border-b-2 border-dashed border-gray-500">
+                    <li className="w-full h-fit font-bold text-xl">ประเภท สถานที่ท่องเที่ยว</li>
                     <h1 className="w-full h-fit flex items-start justify-start text-lg text-blue-500 px-6">
                       {item.type_travel_name}
                     </h1>
                   </div>
-                  <div className="w-full h-fit p-5 border-b-2 border-dashed border-gray-500">
-                    <li className="w-full h-fit">ข้อมูลติดต่อ</li>
-                    <h1 className="w-full h-fit flex items-start justify-start text-sm text-blue-500 px-6">
-                      {item.travel_call}
-                    </h1>
+                  <div className="w-full h-fit p-5 flex flex-col justify-center items-center">
+                    <li className="w-full text-xl font-bold">แผนที่</li>
+                    <iframe
+                      src={String(url)}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      width={300}
+                      height={300}
+                      className="rounded-lg w-full"
+                    ></iframe>
                   </div>
+                  {item.travel_call && (
+                    <div className="w-full h-fit p-5 border-b-2 border-dashed flex-col flex justify-center items-center gap-2 border-gray-500">
+                      <li className="w-full h-fit font-bold text-xl">ข้อมูลติดต่อ</li>
+                      <h1 className="text-lg w-full h-fit flex items-start justify-start text-blue-500 px-6">
+                        โทร: {item.travel_call}
+                      </h1>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div className="w-full h-fit text-2xl text-blue-500 pb-5 border-b">
+              <div className="w-full h-fit text-2xl text-blue-500 pb-5">
                 สิ่งที่ควรรู้
-                <li className="text-black text-lg mt-10">ข้อมูล</li>
+                <li className="text-black mt-10 font-bold text-xl">ข้อมูล</li>
               </div>
-              <div className="my-10 w-full h-fit flex justify-around items-center">
+              <div className="border  my-10 w-full h-fit flex justify-around items-center">
                 <div className="h-[20rem] w-[32%] p-2">
                   <div className="w-full h-fit flex justify-center items-center">
                     <Image
@@ -135,7 +151,7 @@ export default function TravelDetail({ params }: Props) {
                       alt=""
                       className="mx-2"
                     />
-                    <h1 className="text-xl">ค่าธรรมเนียม</h1>
+                    <h1 className="text-[25px]">ค่าธรรมเนียม</h1>
                   </div>
                   <h1 className="flex justify-center items-center my-5">
                     ผู้ใหญ่ - {item.travel_adult_fee} ฿
@@ -144,7 +160,7 @@ export default function TravelDetail({ params }: Props) {
                     เด้ก - {item.travel_child_fee} ฿
                   </h1>
                 </div>
-                <div className="h-[20rem] w-[32%] p-2 border-l border-r">
+                <div className="h-[20rem] w-[32%] p-2 border-l-4 border-r-4">
                   <div className="w-full h-fit flex justify-center items-center">
                     <Image
                       src={"/calendar.png"}
@@ -153,15 +169,15 @@ export default function TravelDetail({ params }: Props) {
                       alt=""
                       className="mx-2"
                     />
-                    <h1 className="text-xl">เวลาทำการ</h1>
+                    <h1 className="text-[25px]">เวลาทำการ</h1>
                   </div>
                   <h1 className="flex justify-center items-center my-5">
                     {item.travel_business_hours_s} น -{" "}
                     {item.travel_business_hours_e} น
                   </h1>
                 </div>
-                <div className="h-[20rem] w-[32%] p-2">
-                  <div className="w-full h-fit flex justify-center items-center">
+                <div className="h-[20rem] w-[32%] p-2 text-lg">
+                  <div className="w-full h-fit flex justify-center items-center py-2">
                     <Image
                       src={"/location.png"}
                       width={30}
@@ -169,50 +185,38 @@ export default function TravelDetail({ params }: Props) {
                       alt=""
                       className="mx-2"
                     />
-                    <h1 className="text-xl">ที่อยู่</h1>
+                    <h1 className="text-[25px]">ที่อยู่</h1>
                   </div>
                   <div className="h-fit w-full flex justify-center items-center my-4">
-                    <h1 className="">
+                    <h1 className="flex flex-col justify-center items-center gap-2">
                       <h1> ถนน : {item.travel_road}</h1>
                       <h1> ซอย : {item.travel_alley}</h1>
                     </h1>
                   </div>
                   <div className="h-fit w-full flex justify-center items-center  my-4">
-                    <h1 className="">
+                    <h1 className="flex flex-col justify-center items-center gap-2">
                       <h1> ตำบล : {item.travel_subdistrict}</h1>
                       <h1> อำเถอ : {item.travel_district}</h1>
                     </h1>
                   </div>
 
                   <div className="h-fit w-full flex justify-center items-center  my-4">
-                    <h1 className="">
+                    <h1 className="flex flex-col justify-center items-center gap-2">
                       <h1> จังหวัด : {item.travel_province}</h1>
                       <h1> รหัสไปรษณีย์ : {item.travel_post}</h1>
                     </h1>
                   </div>
                 </div>
               </div>
-              <div className=" my-10 py-2">
-                <li className="text-lg pb-5 border-b my-2">
-                  ความเป็นมา หรือ คำแนะนำ
+              <div className=" my-10 py-2 flex flex-col justify-center items-center">
+                <li className="text-black mt-10 font-bold text-xl w-full px-14">
+                  คำแนะนำ
                 </li>
-                <div className="h-[20rem] flex justify-center items-center mt-5">
-                  <div className="shadow-lg rounded-lg w-[80%] h-full overflow-y-scroll scrollbar-hide text-center p-5">
+                <div className="border w-[70%] rounded-md h-[20rem] flex justify-center items-center mt-5">
+                  <div className="text-xl font-medium rounded-lg w-[80%] h-full overflow-y-scroll scrollbar-hide text-center p-5">
                     {item.travel_background}
                   </div>
                 </div>
-              </div>
-              <li className="text-xl">แผนที่</li>
-              <div className="w-full h-fit p-5 flex justify-center items-center">
-                <iframe
-                  src={String(url)}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  width={300}
-                  height={300}
-                  className="rounded-lg"
-                ></iframe>
               </div>
             </div>
           );
